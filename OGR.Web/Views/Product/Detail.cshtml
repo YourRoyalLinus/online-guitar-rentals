@@ -1,0 +1,101 @@
+﻿@model OnlineGuitarRentals.Models.Product.AssetDetailModel
+<div class="container"
+     <div class="page-header clearfix detailHeading">
+         <h2 class="text-muted">View Product</h2>
+     </div>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <img class="detailImage" src="@Model.ImageUrl" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p id="productBrand">@Model.Brand</p>
+            <p id="productName">@Model.Name</p>
+            <p id="productDesc">@Model.Description</p>
+            <p id="productRating">@Model.Rating</p>
+            <p id="productPrice">@Model.Price</p>
+            @if (Model.Stock == 0)
+            {
+                <p id="productOutStock">Currently Out of Stock</p>
+            }
+            else
+            {
+                <p id="productStock">@Model.Stock</p>
+            }
+
+            <p id="productShipLoc">@Model.ShippingLocation</p>
+
+            @if (Model.Available == false)
+            {
+                <p id="productAvail"> Currently Unavailable</p>
+                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId"></a>Return</p>
+                <p><a class="btn btn-lg btn-warning" role="button" asp-controller="Product" asp-action="Hold" asp-route-id="@Model.AssetId"></a>Hold</p>
+            }
+
+            @if (Model.Available == true && Model.Stock > 0)
+            {
+                <p><a class="btn btn-lg btn-info" role="button" asp-controller="Product" asp-action="Rent" asp-route-id="@Model.AssetId"></a>Rent</p>
+            }
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <h4>Rental History</h4>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Date Rented</th>
+                    <th>Date Returned</th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rental in @Model.RentalHistory)
+                {
+                    <tr>
+                        <td>
+                            @rental.RentedOut
+                        </td>
+                        <td>
+                            @rental.Returned
+                        </td>
+                        <td>
+                            @rental.Subscriber.FirstName @rental.Subscriber.LastName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <h4>Current Holds</h4>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Hold Placed</th>
+                    <th>Subscriber</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hold in @Model.CurrentHolds)
+                {
+                    <tr>
+                        <td>
+                            @hold.HoldPlace
+                        </td>
+                        <td>
+                            @hold.Subscriber + " " + @hold.Subscriber
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model OnlineGuitarRentals.Models.Product.AssetIndexModel
+
+<div id="assets">
+    <h3>Product Listings</h3>
+    <div id="assetsTable">
+        <table class="table table-condensed" id="productIndexTable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                    <th>Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.Assets)
+                {
+                <tr class="assetRow">
+                    <td class="">
+                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@asset.Id">
+                        <img src="@asset.ImageUrl" class="imageCell" />
+                        </a>
+                    </td>
+                    <td class="">@asset.Brand</td>
+                    <td class="">@asset.Name</td>
+                    <td class="">@asset.Description</td>
+                    <td class="">@asset.Rating</td>
+                    <td class="">@asset.Available</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

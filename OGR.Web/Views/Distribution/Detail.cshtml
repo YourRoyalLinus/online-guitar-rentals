@@ -1,0 +1,53 @@
+﻿@model OnlineGuitarRentals.Models.Distribution.DistributionDetailModel
+@{ 
+    ViewBag.Title = Model.Name;
+}
+
+<div class="container">
+    <div class="card-header clearfix detailHeading">
+        <h2 class="text-muted">Distribution Center Information</h2>
+    </div>
+    <div class="jumbotron">
+        <!--CENTER IMAGE?</!-><div class="row"></div> -->
+        <div class="row centerInfo">
+            <div class="col-md-8">
+                <h2>@Model.Name</h2>
+                <div class="centerContact">
+                    <div id="centerAddress">Address: @Model.Address</div>
+                    <div id="centerTelephone">Telephone: @Model.Telephone</div>
+                </div>
+                <div id="=centerLoc">
+                    <div id="centerRegion">Region: @Model.Region</div>
+                    <div id="centerStates">States Served: @Model.StatesServed</div>
+                </div>
+                <div id="centerCouriers">
+                    <div id="centerCouriers">Couriers: @Model.Couriers</div>
+                </div>
+                <div id="centerHours">
+                    <ul>
+                        @foreach(var day in Model.HoursOpen)
+                        {
+                            <li>@day</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <table>
+                    <tr>
+                        <td class="itemLabel">Number of Subscribers Serviced: </td>
+                        <td class="itemValue">@Model.NumberOfSubscribers</td>
+                    </tr>
+                    <tr>
+                        <td class="itemLabel">Total Number of Assets: </td>
+                        <td class="itemValue">@Model.TotalStock</td>
+                    </tr>
+                    <tr>
+                        <td class="itemLabel">Total Value of Assets: </td>
+                        <td class="itemValue">@Model.TotalAssetValue</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

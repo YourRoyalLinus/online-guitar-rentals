@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Online Guitar Rentals";
+}
+<h3>@ViewData["Title"]</h3>
+
+<div class="mdl-grid">
+    <div class="mdl-cell dml-cell--4-col">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+            <div class="mdl-card __title mdl-card--expand" id="Electric Guitars">
+                <h2 class="mdl-card__title-text homeLabel">Electric Guitars</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                View our catelog of Electric Guitars.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored" asp-controller="Product" asp-action="Index">
+                    View Electric Guitars
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-cell dml-cell--4-col">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+            <div class="mdl-card __title mdl-card--expand" id="Bass Guitars">
+                <h2 class="mdl-card__title-text homeLabel">Bass Guitars</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                View our catelog of Bass Guitars.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored" asp-controller="Product" asp-action="Index">
+                    View Bass Guitars
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-cell dml-cell--4-col">
+        <div class="demo-card-square mdl-card mdl-shadow--2dp">
+            <div class="mdl-card __title mdl-card--expand" id="Acoustic Guitars">
+                <h2 class="mdl-card__title-text homeLabel">Acoustic Guitars</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                View our catelog of Acoustic Guitars.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored" asp-controller="Product" asp-action="Index">
+                    View Bass Acoustic
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

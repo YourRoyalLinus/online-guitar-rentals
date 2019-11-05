@@ -1,0 +1,40 @@
+﻿@model OnlineGuitarRentals.Models.Subscriber.SubscriberIndexModel
+@{ 
+    ViewBag.Title = "Subscriber Index";
+}
+
+<h3>@ViewBag.Title</h3>
+<div id="SubscriberIndex">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id="subscriberIndexTable">
+        <thead>
+            <tr>
+                <th>Profile Link</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Renewal Date</th>
+                <th>Expiration Date</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var subscriber in Model.Subscriber)
+            {
+            <tr>
+                <td><a asp-controller="Subscriber" asp-action="Detail" asp-route-id="@subscriber.Id">(Profile)</a></td>
+                <td>@subscriber.LastName</td>
+                <td>@subscriber.FirstName</td>
+                <td>@subscriber.Address</td>
+                <td>@subscriber.Email</td>
+                <td>@subscriber.PhoneNumber</td>
+                <td>@subscriber.RenewalDate</td>
+                <td>@subscriber.ExpirationDate</td>
+                <td>@subscriber.Active</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

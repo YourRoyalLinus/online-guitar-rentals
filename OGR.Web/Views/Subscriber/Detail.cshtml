@@ -1,0 +1,72 @@
+﻿@model OnlineGuitarRentals.Models.Subscriber.SubscriberDetailModel
+
+<div class="container">
+    <div class="header clearfix detailHeading">
+        <h2 class="text-muted">Subscriber Information</h2>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <h2>@Model.FullName</h2>
+                    <div class="subscriberContact">
+                        <div id="subscriberId">Subscriber ID: @Model.Id</div>
+                        <div id="subscriberAddress">Subscriber Address: @Model.Address</div>
+                        <div id="subscriberEmail">Subscriber Email: @Model.Email</div>
+                        <div id="subscriberPhone">Subscriber Phone Number: @Model.PhoneNumber</div>
+                        <div id="subscriberRenew">Subscriber Next Renewal Date: @Model.RenewalDate</div>
+                        <div id="subscriberExpiration">Subscriber Expiration Date: @Model.ExpirationDate</div>
+                        <div id="subscriberStatus">Subscriber Status: @Model.Active</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Assets Currently Rented Out</h4>
+                @if(@Model.AssetsRented.Any())
+                {
+                    <div id="subscriberAsset">
+                        <ul>
+                            @foreach(var rental in @Model.AssetsRented)
+                            {
+                                <li>
+                                    @rental.RentalAsset.Brand @rental.RentalAsset.Brand - (Guitar Asset ID: @rental.RentalAsset.Id)
+                                    <ul>
+                                        <li>
+                                            Since: @rental.Since
+                                        </li>
+                                        <li>                           
+                                        Returns: @rental.Until
+                                        </li>
+                                    </ul>
+                                </li>
+                             }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div>No items currently rented out.</div>
+                }
+            </div>
+
+            <div class="col-md-4">
+                <h4>Assets Currently On Hold</h4>
+                @if(@Model.Holds.Any())
+                {
+                    <div id="subscriberHolds">
+                        <ul>
+                            @foreach(var hold in @Model.Holds)
+                            {
+                            <li>@hold.RentalAsset.Brand @hold.RentalAsset.Name  - Placed on @hold.HoldPlaced.ToString("yy-dd-MM - HH:mm")</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div>No items on hold.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

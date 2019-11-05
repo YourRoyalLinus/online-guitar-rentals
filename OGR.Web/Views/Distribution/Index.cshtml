@@ -1,0 +1,31 @@
+﻿@model OnlineGuitarRentals.Models.Distribution.DistributionIndexModel
+@{ 
+    ViewBag.Title = "Distribution Center Index";
+}
+
+<h3>ViewBag.Title</h3>
+<div id="distributionIndex">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id ="distributionTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delivering Now</th>
+                <th>Number of Assets</th>
+                <th>Total Asset Value</th>
+                <th>Number of Subscribers Serviced</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var center in Model.DistributionCenters)
+            {
+                <tr>
+                    <td class="strongTd"><a asp-controller="Distribution" asp-action="Detail" asp-route-id="@center.Id">@center.Name</a></td>
+                    <td>@center.IsDelivering</td>
+                    <td>@center.TotalStock</td>
+                    <td>@center.TotalAssetValue</td>
+                    <td>@center.NumberOfSubscribers</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
