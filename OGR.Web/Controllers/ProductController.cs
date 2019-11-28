@@ -10,13 +10,16 @@ namespace OnlineGuitarRentals.Controllers
     {
         private IRentalAsset _assets;
         private IRental _rentals;
-        public ProductController(IRentalAsset assets, IRental rentals)
+        private IGuitar _guitars;
+
+        public ProductController(IRentalAsset assets, IRental rentals, IGuitar guitars)
         {
             _assets = assets;
             _rentals = rentals;
-            
+            _guitars = guitars;
         }
 
+        [Route("/Product/Index")]
         public IActionResult Index()
         {
             var assetModels = _assets.GetAll();
@@ -41,6 +44,36 @@ namespace OnlineGuitarRentals.Controllers
             return View(model);
         }
 
+        [Route("/Product/{type}-Index")]
+        public IActionResult TypeIndex(string type)
+        {
+            var guitarAssetModels = _guitars.GetAllGuitars();
+
+            var listingResult = guitarAssetModels
+                .Where(g => g.Type == type)
+                .Select(result => new GuitarIndexListingModel
+                {
+                    Id = result.Id,
+                    Type = _guitars.GetType(result.Id),
+                    Brand = _assets.GetBrand(result.Id),
+                    Name = _assets.GetName(result.Id),
+                    Style = _guitars.GetStyle(result.Id),
+                    NumberOfStrings = _guitars.GetNumberStrings(result.Id),
+                    Description = _assets.GetDescription(result.Id),
+                    Rating = _assets.GetRating(result.Id),
+                    Available = _assets.GetAvailable(result.Id),
+                    ImageUrl = result.ImageUrl
+                });
+
+            var model = new GuitarIndexModel()
+            {
+                Guitars = listingResult
+            };
+
+            return View(model);
+        }
+
+        
         public IActionResult Detail(int id)
         {
             var asset = _assets.GetById(id);
