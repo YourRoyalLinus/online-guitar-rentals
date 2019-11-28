@@ -48,6 +48,21 @@ insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, Delivery
 
 select* from GuitarRentals_Dev.dbo.Couriers
 commit Tran
+
+Begin Tran
+
+insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, DeliveryStartTime, DeliveryEndTime, DayOfWeek) Values
+(4,'USPS', '7:30:00.00', '20:00:00.00', 1 ),
+(4,'USPS', '7:30:00.00', '20:00:00.00', 2 ),
+(4,'USPS', '7:30:00.00', '20:00:00.00', 3 ),
+(4,'USPS', '7:30:00.00', '20:00:00.00', 4 ),
+(4,'USPS', '7:30:00.00', '20:00:00.00', 5 ),
+(5,'FedEx', '7:30:00.00', '15:00:00.00', 6 ),
+(5,'FedEx', '7:30:00.00', '15:00:00.00', 7 )
+
+select* from GuitarRentals_Dev.dbo.Couriers 
+commit Tran
+
 */
 
 /* DONE
@@ -64,6 +79,40 @@ Insert into GuitarRentals_Dev.dbo.RentalAssets(Brand, Name, Available, Descripti
 
 ('Fender',' Player Jazz Bass Maple Fingerboard', 0, 'With its dual single-coil pickups and smooth playing feel, the Player Jazz Bass is an inspiring instrument with classic, elevated style and authentic Fender bass tone.', 5, '*TBD*', 'Guitar', 'Bass', '3-Color Sunburst', 4, 'Alder body with gloss finish, Two Player Series single-coil Jazz Bass pickups, Two volume controls, master tone control, “Modern C"-shaped neck profile, 9.5"-radius fingerboard'),
 ('Fender',' Player Jazz Bass Maple Fingerboard', 1, 'With its dual single-coil pickups and smooth playing feel, the Player Jazz Bass is an inspiring instrument with classic, elevated style and authentic Fender bass tone.', 5, '*TBD*', 'Guitar', 'Bass', 'Polar White', 4, 'Alder body with gloss finish, Two Player Series single-coil Jazz Bass pickups, Two volume controls, master tone control, “Modern C"-shaped neck profile, 9.5"-radius fingerboard')
+
+/*
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst.png' 
+where Id = 7
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White.png' 
+where Id = 8
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Blue_Lagoon_Burst.png' 
+where Id = 2
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Dragon_Eye_Burst.png' 
+where Id = 1
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Black.png' 
+where Id = 6
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Matte_Natural.png' 
+where Id = 3
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pink.png' 
+where Id = 4
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set ImageUrl = 'images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut.png' 
+where Id = 5
+
 
 select* from GuitarRentals_Dev.dbo.RentalAssets
 Commit Tran
@@ -94,7 +143,21 @@ insert into GuitarRentals_Dev.dbo.Inventory(RentalAssetId, Price, Stock, Distrib
 (2, 399.99, 2, 5),
 (6, 49.99, 7, 5)
 
-select* from GuitarRentals_Dev.dbo.Inventory
+/*
+update GuitarRentals_Dev.dbo.Inventory
+set price = 54.99
+where RentalAssetId in (3, 6)
+
+update GuitarRentals_Dev.dbo.Inventory
+set rentalassetid = 7
+where RentalAssetId = 8 and id = 7
+
+update GuitarRentals_Dev.dbo.Inventory
+set rentalassetid = 5
+where RentalAssetId = 3 and id = 13
+*/
+
+select distinct rentalassetid* from GuitarRentals_Dev.dbo.Inventory order by 2 
 Commit Tran
 */
 
@@ -130,5 +193,6 @@ select* from GuitarRentals_Dev.dbo.RentalHistories
 */
 
 /*
-select* from GuitarRentals_Dev.dbo.Rentals
+select* from GuitarRentals_Dev.dbo.Rentals  
 */
+
