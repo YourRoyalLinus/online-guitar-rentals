@@ -1,0 +1,35 @@
+﻿@model OnlineGuitarRentals.Models.Inventory.InventoryIndexModel
+@{
+    ViewBag.Title = "Inventory Ledger";
+}
+
+<h3>@ViewBag.Title</h3>
+<div id="invLedger">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id="distributionTable">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Asset Brand</th>
+                <th>Asset Name</th>
+                <th>Asset Type</th>
+                <th>Asset Style</th>
+                <th>Total Stock</th>
+                <th>Total Asset Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var inv in Model.Inventory)
+            {
+            <tr>
+                <td class="strongTd"><a asp-controller="Product" asp-action="Detail" asp-route-id="@inv.Id">@inv.Id</a></td>
+                <td>@inv.AssetBrand</td>
+                <td>@inv.AssetName</td>
+                <td>@inv.AssetType</td>
+                <td>@inv.AssetStyle</td>
+                <td>@inv.TotalStock</td>
+                <td>@inv.TotalAssetValue</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
