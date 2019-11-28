@@ -43,8 +43,10 @@ namespace OnlineGuitarRentals
             services.AddScoped<IRental, RentalService>();
             services.AddScoped<ISubscriber, SubscriberService>();
             services.AddScoped<IDistribution, DistributionService>();
+            services.AddScoped<IInventory, InventoryService>();
+            services.AddScoped<IGuitar, GuitarService>();
 
-            services.AddDbContext<RentalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RentalsConnection")));
+            services.AddDbContext<RentalContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RentalsConnection"), b => b.MigrationsAssembly("OnlineGuitarRentals")));
            
 
 
