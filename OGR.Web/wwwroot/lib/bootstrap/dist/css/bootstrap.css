@@ -2333,9 +2333,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+    color: #fff;
+    background-color: #2f6ff5;
+    border-color: #007bff;
 }
 
 .btn-primary:hover {
@@ -2902,7 +2902,7 @@ fieldset:disabled a.btn {
 
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 1.50rem;
   line-height: 1.5;
   border-radius: 0.3rem;
 }
