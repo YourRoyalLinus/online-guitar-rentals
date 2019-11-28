@@ -12,9 +12,8 @@ namespace RentalData
 
         public RentalContext(DbContextOptions options) : base(options) 
         { 
-
+       
         }
-
         public virtual DbSet<User> Users { get; set; }
 
         public virtual DbSet<Subscriber> Subscribers { get; set; }
