@@ -1,0 +1,44 @@
+﻿@model OnlineGuitarRentals.Models.Product.GuitarIndexModel
+@{ 
+    ViewBag.Title = "Product Listings - " + @Model.Guitars.FirstOrDefault().Type;
+}
+<div id="assets">
+    <h3>@ViewBag.Title</h3>
+    <div id="assetsTable">
+        <table class="table table-condensed" id="productIndexTable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Style</th>
+                    <th>Number of Strings</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                    <th>Available</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var guitar in Model.Guitars)
+                {
+                    <tr class="assetRow">
+                        <td class="">
+                            <a asp-controller="Product" asp-action="Detail" asp-route-type="@guitar.Type" asp-route-id="@guitar.Id">
+                            <img src="@guitar.ImageUrl" class="imageCell" />
+                            </a>
+                        </td>
+                        <td class="">@guitar.Type</td>
+                        <td class="">@guitar.Brand</td>
+                        <td class="">@guitar.Name</td>
+                        <td class="">@guitar.Style</td>
+                        <td class="">@guitar.NumberOfStrings</td>
+                        <td class="">@guitar.Description</td>
+                        <td class="">@guitar.Rating</td>
+                        <td class="">@guitar.Available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
