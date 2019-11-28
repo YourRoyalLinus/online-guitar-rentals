@@ -1,52 +1,69 @@
-﻿@{
-    ViewData["Title"] = "Online Guitar Rentals";
-}
-<h3>@ViewData["Title"]</h3>
-
-<div class="mdl-grid">
-    <div class="mdl-cell dml-cell--4-col">
-        <div class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card __title mdl-card--expand" id="Electric Guitars">
-                <h2 class="mdl-card__title-text homeLabel">Electric Guitars</h2>
+﻿<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#electric").hover(function () {
+                $("#electric-cell .card-text").css({ "color": "rgba(255, 255, 255, 1)", "font-weight": "400" })
+            },  function(){
+                    $("#electric-cell .card-text").css({ "color": "rgba(255, 255, 255, .5)", "font-weight": "300" });
+            });
+        });
+    </script>
+    <script>
+         $(document).ready(function () {
+            $("#bass").hover(function () {
+                $("#bass-cell .card-text").css({ "color": "rgba(255, 255, 255, 1)", "font-weight": "400" })
+            },  function(){
+                    $("#bass-cell .card-text").css({ "color": "rgba(255, 255, 255, .5)", "font-weight": "300" });
+            });
+        });
+    </script>
+    <script>
+         $(document).ready(function () {
+            $("#acoustic").hover(function () {
+                $("#acoustic-cell .card-text").css({ "color": "rgba(255, 255, 255, 1)", "font-weight": "400" })
+            },  function(){
+                    $("#acoustic-cell .card-text").css({ "color": "rgba(255, 255, 255, .5)", "font-weight": "300" });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2 class="page-title">Asset Management System</h2>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col" id="electric-cell">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand" id="electric">
+                    <a asp-controller="Product" asp-action="TypeIndex" asp-route-type="Electric"> </a>
+                </div>
             </div>
-            <div class="mdl-card__supporting-text">
-                View our catelog of Electric Guitars.
+            <p class="card-text">
+                Electric Guitars
+            </p>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col" id="bass-cell">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand" id="bass">
+                    <a asp-controller="Product" asp-action="TypeIndex" asp-route-type="Bass"> </a>
+                </div>
             </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-button--colored" asp-controller="Product" asp-action="Index">
-                    View Electric Guitars
-                </a>
+            <p class="card-text">
+                Bass Guitars
+            </p>
+        </div>
+        <div class="mdl-cell mdl-cell--4-col" id="acoustic-cell">
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand" id="acoustic">
+                    <a asp-controller="Product" asp-action="TypeIndex" asp-route-type="Acoustic"> </a>
+                </div>
             </div>
+            <p class="card-text">
+                Acoustic Guitars
+            </p>
         </div>
     </div>
-    <div class="mdl-cell dml-cell--4-col">
-        <div class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card __title mdl-card--expand" id="Bass Guitars">
-                <h2 class="mdl-card__title-text homeLabel">Bass Guitars</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                View our catelog of Bass Guitars.
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-button--colored" asp-controller="Product" asp-action="Index">
-                    View Bass Guitars
-                </a>
-            </div>
-        </div>
+    <div class="catalog-btn">
+        <a asp-controller="Product" asp-action="Index" button type="button" class="btn btn-primary btn-lg">View Entire Product Catalog</a>
     </div>
-    <div class="mdl-cell dml-cell--4-col">
-        <div class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card __title mdl-card--expand" id="Acoustic Guitars">
-                <h2 class="mdl-card__title-text homeLabel">Acoustic Guitars</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                View our catelog of Acoustic Guitars.
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-button--colored" asp-controller="Product" asp-action="Index">
-                    View Bass Acoustic
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+   
+</body>
