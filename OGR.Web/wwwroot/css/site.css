@@ -1,59 +1,158 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-
-/* NEED TO IMPLEMENT BEFORE CARDS APPEAR */
-/*LINK IMAGES TO CARDS*/
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿#main-page-body{
+    background-color: royalblue;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
+.logo img{
+    height:150px;
+    width: 250px;
+    padding: 5% 5% 5% 5%;
+    margin: -30px;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.page-title{
+    padding: 5%;
+    margin:auto;
+    display:block;
+    text-align:center;
+    font-size:72px;
+    color:navajowhite;
+}
+.mdl-grid{
+    padding:2% 20%;
+    
+}
+.demo-card-square.mdl-card {
+    width: 400px;
+    height: 400px;
+
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+#electric {
+    background-image: url('/images/Site Images/Home/electric.jpg');
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: inset 8px royalblue;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+#electric a {
+
+    width: 400px;
+    height: 400px;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+#electric-cell > .card-text {
+    height: 50px;
+    width: 400px;
+    display: block;
+    text-align: center;
+    padding: 5%;
+    font: 32px arial;
+    font-weight: 300;
+    color: rgba(255, 222, 173, 0.5);
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+
+
+#electric-cell {
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    margin-top: -200px;
+    margin-left: -200px;
 }
+
+#electric-cell > .demo-card-square > .mdl-card__title:hover  {
+    border-color: ghostwhite;
+}
+
+
+#bass {
+    background-image: url('/images/Site Images/Home/bass.jpg');
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: inset 8px royalblue;
+}
+
+#bass a{
+    height:400px;
+    width:400px;
+}
+
+#bass-cell {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+#bass-cell > .card-text {
+    height: 50px;
+    width: 400px;
+    display: block;
+    text-align: center;
+    padding: 5%;
+    font: 32px arial;
+    font-weight: 300;
+    color: rgba(255, 222, 173, 0.5);
+}
+
+#bass-cell > .demo-card-square > .mdl-card__title:hover {
+    border-color: ghostwhite;
+}
+
+#acoustic {
+    background-image: url('/images/Site Images/Home/acoustic.jpg');
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: inset 8px royalblue;
+}
+
+#acoustic a {
+    height: 400px;
+    width: 400px;
+}
+
+#acoustic-cell > .card-text {
+    height: 50px;
+    width: 400px;
+    display: block;
+    text-align: center;
+    padding: 5%;
+    font: 32px arial;
+    font-weight: 300;
+    color: rgba(255, 222, 173, 0.5);
+}
+
+#acoustic-cell {
+    position: fixed;
+    top: 50%;
+    left: 70%;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+
+#acoustic-cell > .demo-card-square > .mdl-card__title:hover {
+    border-color: ghostwhite;
+}
+
+.catalog-btn {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.catalog-btn a {
+    height: 50px;
+    width: 330px;
+}
+
+
+
