@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace RentalData.Migrations
+namespace OnlineGuitarRentals.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -19,6 +19,12 @@ namespace RentalData.Migrations
                     Description = table.Column<string>(nullable: true),
                     Rating = table.Column<float>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: true),
+                    AltImgUrl1 = table.Column<string>(nullable: true),
+                    AltImgUrl2 = table.Column<string>(nullable: true),
+                    AltImgUrl3 = table.Column<string>(nullable: true),
+                    AltImgUrl4 = table.Column<string>(nullable: true),
+                    AltImgUrl5 = table.Column<string>(nullable: true),
+                    AltImgUrl6 = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     Type = table.Column<string>(nullable: true),
                     Style = table.Column<string>(nullable: true),

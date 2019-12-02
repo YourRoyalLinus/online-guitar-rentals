@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentalData;
 
-namespace RentalData.Migrations
+namespace OnlineGuitarRentals.Migrations
 {
     [DbContext(typeof(RentalContext))]
     partial class RentalContextModelSnapshot : ModelSnapshot
@@ -176,6 +176,24 @@ namespace RentalData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AltImgUrl1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl6")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Available")
                         .HasColumnType("int");

@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentalData;
 
-namespace RentalData.Migrations
+namespace OnlineGuitarRentals.Migrations
 {
     [DbContext(typeof(RentalContext))]
-    [Migration("20191011011147_Initial Migration")]
+    [Migration("20191130160735_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,6 +178,24 @@ namespace RentalData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AltImgUrl1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AltImgUrl6")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Available")
                         .HasColumnType("int");

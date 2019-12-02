@@ -80,7 +80,7 @@ Insert into GuitarRentals_Dev.dbo.RentalAssets(Brand, Name, Available, Descripti
 ('Fender',' Player Jazz Bass Maple Fingerboard', 0, 'With its dual single-coil pickups and smooth playing feel, the Player Jazz Bass is an inspiring instrument with classic, elevated style and authentic Fender bass tone.', 5, '*TBD*', 'Guitar', 'Bass', '3-Color Sunburst', 4, 'Alder body with gloss finish, Two Player Series single-coil Jazz Bass pickups, Two volume controls, master tone control, “Modern C"-shaped neck profile, 9.5"-radius fingerboard'),
 ('Fender',' Player Jazz Bass Maple Fingerboard', 1, 'With its dual single-coil pickups and smooth playing feel, the Player Jazz Bass is an inspiring instrument with classic, elevated style and authentic Fender bass tone.', 5, '*TBD*', 'Guitar', 'Bass', 'Polar White', 4, 'Alder body with gloss finish, Two Player Series single-coil Jazz Bass pickups, Two volume controls, master tone control, “Modern C"-shaped neck profile, 9.5"-radius fingerboard')
 
-/*
+
 update GuitarRentals_Dev.dbo.RentalAssets
 set ImageUrl = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst.png' 
 where Id = 7
@@ -110,7 +110,7 @@ set ImageUrl = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pi
 where Id = 4
 
 update GuitarRentals_Dev.dbo.RentalAssets
-set ImageUrl = 'images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut.png' 
+set ImageUrl = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut.png' 
 where Id = 5
 
 
@@ -143,7 +143,7 @@ insert into GuitarRentals_Dev.dbo.Inventory(RentalAssetId, Price, Stock, Distrib
 (2, 399.99, 2, 5),
 (6, 49.99, 7, 5)
 
-/*
+
 update GuitarRentals_Dev.dbo.Inventory
 set price = 54.99
 where RentalAssetId in (3, 6)
@@ -155,9 +155,9 @@ where RentalAssetId = 8 and id = 7
 update GuitarRentals_Dev.dbo.Inventory
 set rentalassetid = 5
 where RentalAssetId = 3 and id = 13
-*/
 
-select distinct rentalassetid* from GuitarRentals_Dev.dbo.Inventory order by 2 
+
+select distinct* from GuitarRentals_Dev.dbo.Inventory 
 Commit Tran
 */
 
@@ -195,4 +195,3 @@ select* from GuitarRentals_Dev.dbo.RentalHistories
 /*
 select* from GuitarRentals_Dev.dbo.Rentals  
 */
-
