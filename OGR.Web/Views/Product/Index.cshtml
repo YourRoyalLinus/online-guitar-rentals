@@ -2,6 +2,15 @@
 
 <div id="assets">
     <h3>All Product Listings</h3>
+    <form asp-controller="Product" asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                <input type="text" name="search" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-primary" /> | 
+                <a asp-action="Index">Back to Full Catalog</a>
+            </p>
+        </div>
+    </form>
     <div id="assetsTable">
         <table class="table table-condensed" id="productIndexTable">
             <thead>

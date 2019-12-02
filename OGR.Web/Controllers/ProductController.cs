@@ -20,8 +20,10 @@ namespace OnlineGuitarRentals.Controllers
         }
 
         [Route("/Product/Index")]
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
+            ViewData["CurrentFilter"] = "";
+
             var assetModels = _assets.GetAll();
 
             var listingResult = assetModels
@@ -36,6 +38,11 @@ namespace OnlineGuitarRentals.Controllers
                     ImageUrl = result.ImageUrl
                 });
 
+            if(!string.IsNullOrEmpty(search))
+            {
+                listingResult = listingResult.Where(r => r.Name.Contains(search) || r.Brand.Contains(search));
+            }
+
             var model = new AssetIndexModel()
             {
                 Assets = listingResult
@@ -45,8 +52,10 @@ namespace OnlineGuitarRentals.Controllers
         }
 
         [Route("/Product/{type}-Index")]
-        public IActionResult TypeIndex(string type)
+        public IActionResult TypeIndex(string type, string search)
         {
+            ViewData["CurrentFilter"] = "";
+
             var guitarAssetModels = _guitars.GetAllGuitars();
 
             var listingResult = guitarAssetModels
@@ -65,6 +74,11 @@ namespace OnlineGuitarRentals.Controllers
                     ImageUrl = result.ImageUrl
                 });
 
+            if (!string.IsNullOrEmpty(search))
+            {
+                listingResult = listingResult.Where(r => r.Name.Contains(search) || r.Brand.Contains(search));
+            }
+
             var model = new GuitarIndexModel()
             {
                 Guitars = listingResult
@@ -73,7 +87,6 @@ namespace OnlineGuitarRentals.Controllers
             return View(model);
         }
 
-        
         public IActionResult Detail(int id)
         {
             var asset = _assets.GetById(id);
@@ -136,9 +149,26 @@ namespace OnlineGuitarRentals.Controllers
             return View(model);
         }
 
-        public IActionResult Return(int assetId)
+        public IActionResult Return(int id)
         {
-            _rentals.ReturnProduct(assetId);
+            var asset = _assets.GetById(id);
+
+            var model = new RentalModel
+            {
+                AssetId = id,
+                ImageUrl = asset.ImageUrl,
+                Name = asset.Brand + " " + asset.Name,
+                SubscriberId = 0,
+                OutOfStock = _assets.GetStock(id) > 0
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ReturnProduct(int assetId, int subscriberId)
+        {
+            _rentals.ReturnProduct(assetId, subscriberId); 
             return RedirectToAction("Detail", new { id = assetId });
 
         }
