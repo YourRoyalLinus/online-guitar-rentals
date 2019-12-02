@@ -8,11 +8,11 @@
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id ="distributionTable">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Delivering Now</th>
-                <th>Number of Assets</th>
-                <th>Total Asset Value</th>
-                <th>Number of Subscribers Serviced</th>
+                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Name</a></th>
+                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["DeliverSortParam"]">Delivering Now</a></th>
+                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["AssetsSortParam"]">Number of Assets</a></th>
+                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParam"]">Total Asset Value</a></th>
+                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["SubsSortParam"]">Number of Subscribers Serviced</a></th>
             </tr>
         </thead>
         <tbody>

@@ -15,8 +15,14 @@ namespace OnlineGuitarRentals.Controllers
             _subscriber = subscriber;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
+            ViewData["ActiveSortParam"] = string.IsNullOrEmpty(sortOrder) ? "active_desc" : "";
+            ViewData["LastNameSortParam"] = sortOrder == "LastName" ? "lastname_desc" : "LastName";
+            ViewData["FirstNameSortParam"] = sortOrder == "FirstName" ? "firstname_desc" : "FirstName";
+            ViewData["RenewalSortParam"] = sortOrder == "Renewal" ? "renewal_desc" : "Renewal";
+            ViewData["ExpirationSortParam"] = sortOrder == "Expiration" ? "expiration_desc" : "Expiration";
+
             var allSubs = _subscriber.GetAll();
 
             var subscriberModels = allSubs.Select(s => new SubscriberDetailModel
@@ -30,8 +36,42 @@ namespace OnlineGuitarRentals.Controllers
                 RenewalDate = s.RenewalDate,
                 ExpirationDate = s.ExperationDate,
                 Active = s.Active == 1 ? "Active" : "Inactive"
-            }).ToList();
+            });
 
+
+            switch (sortOrder)
+            {
+                case "active_desc":
+                    subscriberModels = subscriberModels.OrderByDescending(s => s.Active);
+                    break;
+                case "LastName":
+                    subscriberModels = subscriberModels.OrderBy(s => s.LastName);
+                    break;
+                case "lastname_desc":
+                    subscriberModels = subscriberModels.OrderByDescending(s => s.LastName);
+                    break;
+                case "FirstName":
+                    subscriberModels = subscriberModels.OrderBy(s => s.FirstName);
+                    break;
+                case "firstname_desc":
+                    subscriberModels = subscriberModels.OrderByDescending(s => s.FirstName);
+                    break;
+                case "Renewal":
+                    subscriberModels = subscriberModels.OrderBy(s => s.RenewalDate);
+                    break;
+                case "renewal_desc":
+                    subscriberModels = subscriberModels.OrderByDescending(s => s.RenewalDate);
+                    break;
+                case "Expiration":
+                    subscriberModels = subscriberModels.OrderBy(s => s.ExpirationDate);
+                    break;
+                case "expiration_desc":
+                    subscriberModels = subscriberModels.OrderByDescending(s => s.ExpirationDate);
+                    break;
+                default:
+                    subscriberModels = subscriberModels.OrderBy(s => s.Active);
+                    break;
+            }
             var model = new SubscriberIndexModel()
             {
                 Subscriber = subscriberModels

@@ -9,14 +9,14 @@
         <thead>
             <tr>
                 <th>Profile Link</th>
-                <th>Last Name</th>
-                <th>First Name</th>
+                <th><a asp-controller="Subscriber" asp-action="Index" asp-route-sortOrder="@ViewData["LastNameSortParam"]">Last Name</a></th>
+                <th><a asp-controller="Subscriber" asp-action="Index" asp-route-sortOrder="@ViewData["FirstNameSortParam"]">First Name</a></th>
                 <th>Address</th>
                 <th>Email</th>
                 <th>Phone Number</th>
-                <th>Renewal Date</th>
-                <th>Expiration Date</th>
-                <th>Active</th>
+                <th><a asp-controller="Subscriber" asp-action="Index" asp-route-sortOrder="@ViewData["RenewalSortParam"]">Renewal Date</a></th>
+                <th><a asp-controller="Subscriber" asp-action="Index" asp-route-sortOrder="@ViewData["ExpirationSortParam"]">Expiration Date</a></th>
+                <th><a asp-controller="Subscriber" asp-action="Index" asp-route-sortOrder="@ViewData["ActiveSortParam"]">Active</a></th>
             </tr>
         </thead>
         <tbody>

@@ -8,13 +8,13 @@
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id="distributionTable">
         <thead>
             <tr>
-                <th>Product ID</th>
-                <th>Asset Brand</th>
-                <th>Asset Name</th>
-                <th>Asset Type</th>
-                <th>Asset Style</th>
-                <th>Total Stock</th>
-                <th>Total Asset Value</th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParam"]">Product ID</a></th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["BrandSortParam"]">Asset Brand</a></th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Asset Name</a></th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParam"]">Asset Type</a></th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["StyleSortParam"]">Asset Style</a></th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["StockSortParam"]">Total Stock</a></th>
+                <th><a asp-controller="Inventory" asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParam"]">Total Asset Value</a></th>
             </tr>
         </thead>
         <tbody>

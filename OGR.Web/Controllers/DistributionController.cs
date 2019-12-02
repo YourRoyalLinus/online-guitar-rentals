@@ -15,8 +15,14 @@ namespace OnlineGuitarRentals.Controllers
         {
             _distribution = distribution;
         }
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
+            ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DeliverSortParam"] = sortOrder == "Delivering" ? "delivering_desc" : "Delivering";
+            ViewData["AssetsSortParam"] = sortOrder == "Assets" ? "assets_desc" : "Assets";
+            ViewData["ValueSortParam"] = sortOrder == "Value" ? "value_desc" : "Value";
+            ViewData["SubsSortParam"] = sortOrder == "Subscribers" ? "subscribers_desc" : "Subscribers";
+
             var centers = _distribution.GetAll().Select(center => new DistributionDetailModel
             {
                 Id = center.Id,
@@ -31,6 +37,40 @@ namespace OnlineGuitarRentals.Controllers
                 TotalStock = _distribution.GetTotalStock(center.Id)
 
             });
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    centers = centers.OrderByDescending(c => c.Name);
+                    break;
+                case "Delivering":
+                    centers = centers.OrderBy(c => c.IsDelivering);
+                    break;
+                case "delivering_desc":
+                    centers = centers.OrderByDescending(c => c.IsDelivering);
+                    break;
+                case "Assets":
+                    centers = centers.OrderBy(c => c.TotalStock);
+                    break;
+                case "assets_desc":
+                    centers = centers.OrderByDescending(c => c.TotalStock);
+                    break;
+                case "Value":
+                    centers = centers.OrderBy(c => c.TotalAssetValue);
+                    break;
+                case "value_desc":
+                    centers = centers.OrderByDescending(c => c.TotalAssetValue);
+                    break;
+                case "Subscribers":
+                    centers = centers.OrderBy(c => c.NumberOfSubscribers);
+                    break;
+                case "subscribers_desc":
+                    centers = centers.OrderByDescending(c => c.NumberOfSubscribers);
+                    break;
+                default:
+                    centers = centers.OrderBy(c => c.Name);
+                    break;
+            }
 
             var model = new DistributionIndexModel()
             {
