@@ -15,7 +15,7 @@ namespace RentalData.Models
         public string States { get; set; }
 
         public virtual IEnumerable<Subscriber> Subscribers { get; set; }
-        public virtual IEnumerable<DistributionCenter> DistributionCenter{ get; set; }
+        public virtual IEnumerable<DistributionCenter> DistributionCenter { get; set; }
 
     }
 }
