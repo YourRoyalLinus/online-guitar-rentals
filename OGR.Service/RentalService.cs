@@ -47,6 +47,7 @@ namespace RentalServices
         {
             return _context.Holds
                 .Include(h => h.RentalAsset)
+                .Include(h => h.Subscriber)
                 .Where(h => h.RentalAsset.Id == id);
         }
 
@@ -100,26 +101,24 @@ namespace RentalServices
 
         }
 
-        public void PlaceHold(int assetId, int SubscriberId)
+        public void PlaceHold(int assetId, int subscriberId)
         {
             var now = DateTime.Now;
+            var asset = GetRentalAsset(assetId);
+            var subscriber = GetSubscriber(subscriberId);
+            var center = GetDistributionCenter(subscriber);
+            var inventory = GetInventory(assetId, center.Id);
 
-            var asset = _context.RentalAssets
-                .FirstOrDefault(a => a.Id == assetId);
-
-            var subscriber = _context.Subscribers
-                .FirstOrDefault(s => s.Id == SubscriberId);
-
-            if(asset.Available == 1)
+            if(inventory.Stock >= 1)
             {
-                UpdateAssetAvail(assetId, false);
+                UpdateAssetAvail(inventory.Id);
             }
 
             var hold = new Hold
             {
                 RentalAsset = asset,
                 Subscriber = subscriber,
-                DistributionCenter = (DistributionCenter)subscriber.ShippingRegion.DistributionCenter,
+                DistributionCenter = GetDistributionCenter(subscriber),
                 HoldPlaced = now
             };
 
@@ -130,31 +129,30 @@ namespace RentalServices
 
         public void RentProduct(int assetId, int subscriberId)
         {
-            var product = _context.RentalAssets
-                .FirstOrDefault(a => a.Id == assetId); //Refactor into Helper
+            var now = DateTime.Now;
+            var product = GetRentalAsset(assetId);
+            var subscriber = GetSubscriber(subscriberId);
+            var distributionCenter = GetDistributionCenter(subscriber);
+            var inventory = GetInventory(assetId, distributionCenter.Id);
 
-            if(IsAvailable(assetId))
+            if (subscriber == null)
             {
                 return;
-                //Handle feedback to user
+                //Handle Feedback to user on Frontend
             }
 
-            UpdateAssetAvail(assetId, false);
+            if (!IsAvailable(assetId, subscriberId))
+            {
+                return;
+                //Handle Feedback to user on Frontend
+            }
 
-            var subscriber = _context.Subscribers
-                .Include(r => r.ShippingRegion)
-                .FirstOrDefault(s => s.Id == subscriberId); //Helper
-
-            var distributionCenter = _context.DistributionCenters
-                .Include(dc => dc.ShippingRegion)
-                .FirstOrDefault(c => c.ShippingRegion == subscriber.ShippingRegion); //Helper
-
-            var now = DateTime.Now;
+            UpdateAssetAvail(inventory.Id);
 
             var rental = new Rental
             {
                 RentalAsset = product,
-                Subscriber = subscriber, //Needs to handle for non-subs (null)
+                Subscriber = subscriber, 
                 DistributionCenter = distributionCenter,  
                 Since = now,
                 Until = GetDefaultRentalPeriod(now)
@@ -170,16 +168,19 @@ namespace RentalServices
                 DistributionCenter = distributionCenter
             };
 
-            _context.Add(rentalHistory); //Could be helper
+            _context.Add(rentalHistory); 
             _context.SaveChanges();
         }
 
-        public void ReturnProduct(int assetId)
+        public void ReturnProduct(int assetId, int subscriberId)
         {
             var now = DateTime.Now;
+            var subscriber = GetSubscriber(subscriberId);
+            var distributionCenter = GetDistributionCenter(subscriber);
+            var inventory = GetInventory(assetId, distributionCenter.Id);
+            var product = GetRentalAsset(assetId);
 
-            var product = _context.RentalAssets
-                .FirstOrDefault(a => a.Id == assetId);
+            _context.Update(product);
 
             //remove any existing Rentals on the product
             RemoveExistingRentals(assetId);
@@ -190,10 +191,7 @@ namespace RentalServices
             //look for existing holds on the item
             //if there are enough holds and enough stock update to the n
             //subscribers with the earliest holds
-            var currentHolds = _context.Holds
-              .Include(h => h.RentalAsset)
-              .Include(h => h.Subscriber)
-              .Where(h => h.RentalAsset.Id == assetId); //Refactor into helper
+            var currentHolds = GetCurrentHolds(assetId);
 
             if (currentHolds.Any())
             {
@@ -201,8 +199,9 @@ namespace RentalServices
                 return;
             }
 
-            //otherwise update the item to available
-            UpdateAssetAvail(assetId, true);
+            //otherwise add the item to the distcenter's stock of the asset
+            _context.Update(inventory);
+            inventory.Stock += 1;
 
             _context.SaveChanges();
         }
@@ -211,11 +210,34 @@ namespace RentalServices
         // Methods
         // Below
 
-        private void RentalAssetHelper()
+        private RentalAsset GetRentalAsset(int assetId)
         {
-            return;
+             return  _context.RentalAssets
+                .FirstOrDefault(a => a.Id == assetId);
         }
-       
+
+        private Subscriber GetSubscriber(int subscriberId)
+        {
+           return  _context.Subscribers
+                .Include(r => r.ShippingRegion)
+                .FirstOrDefault(s => s.Id == subscriberId);
+        }
+
+        private DistributionCenter GetDistributionCenter(Subscriber subscriber)
+        {
+            return _context.DistributionCenters
+                .Include(dc => dc.ShippingRegion)
+                .FirstOrDefault(c => c.ShippingRegion == subscriber.ShippingRegion);
+        }
+        
+        private Inventory GetInventory(int assetId, int centerId)
+        {
+                return _context.Inventory
+                   .Include(i => i.DistributionCenter)
+                   .Include(i => i.RentalAsset)
+                   .FirstOrDefault(i => i.DistributionCenter.Id == centerId && i.RentalAsset.Id == assetId);
+        }
+
         private void RemoveExistingRentals(int assetId)
         {
             var rental = _context.Rentals
@@ -227,58 +249,88 @@ namespace RentalServices
             }
         }
 
-        private void CloseExistingRentalHistory(int assetid, DateTime now)
+        private void CloseExistingRentalHistory(int assetid, DateTime now) 
         {
             var history = _context.RentalHistories
+                .Include(h => h.DistributionCenter)
                 .FirstOrDefault(h => h.RentalAsset.Id == assetid && h.Returned == null);
+
+            var inventory = GetInventory(assetid, history.DistributionCenter.Id);
+
 
             if (history != null)
             {
                 _context.Update(history);
-                history.RentedOut = now;
+                _context.Update(inventory);
+                history.Returned = now;
+                inventory.Stock += 1;
             }
         }
 
-        private void RentoutToEarliestHolds(int assetId, IQueryable<Hold> currentHolds)
+        private void RentoutToEarliestHolds(int assetId, IEnumerable<Hold> currentHolds)
         {
             var inv = _context.Inventory
-                .Include(i => i.RentalAsset)
-                .FirstOrDefault(i => i.RentalAsset.Id == assetId);
+                            .Include(i => i.RentalAsset)
+                            .GroupBy(i => i.RentalAsset.Id)
+                            .Select(inv => new
+                            {
+                                Id = inv.Key,
+                                Stock = inv.Sum(i => i.Stock)
+                            })
+                            .FirstOrDefault(i => i.Id == assetId);
 
             var earliestHolds = currentHolds.OrderBy(holds => holds.HoldPlaced)
-                .Take(inv.Stock);  //WIP
+                .Take(inv.Stock);  
 
             foreach(var hold in earliestHolds)
             {
-                _context.Remove(hold.Subscriber);
-                RentProduct(assetId, hold.Subscriber.Id);
+                var inventory = GetInventory(assetId, hold.DistributionCenter.Id);
+
+                if (inventory.Stock >= 1)
+                {
+                    _context.Remove(hold.Subscriber);
+                    _context.Update(inventory);
+                    inventory.Stock -= 1;
+
+                    RentProduct(assetId, hold.Subscriber.Id);
+                }
+                else
+                {
+                    continue;
+                }
             }
-                
 
             _context.SaveChanges();
 
         }
 
-        private void HoldsHelper()
+        private bool IsAvailable(int assetId, int subscriberId) 
         {
-            return;
+            var subscriber = GetSubscriber(subscriberId);
+
+            var center = GetDistributionCenter(subscriber);
+
+            var inventory = GetInventory(assetId, center.Id);
+
+            if (inventory.Stock >= 1)
+                return true;
+            else
+                return false;
         }
 
-        private bool IsAvailable(int assetId)
+        private void UpdateAssetAvail(int inventoryId)
         {
-            return _context.Rentals
-                .Where(r => r.RentalAsset.Id == assetId)
-                .Any();
-        }
+            var inventory = _context.Inventory
+                .FirstOrDefault(i => i.Id == inventoryId);
 
-        private void UpdateAssetAvail(int assetId, bool b)
-        {
-            var product = _context.RentalAssets
-                .FirstOrDefault(a => a.Id == assetId);
+            var product = GetRentalAsset(inventory.RentalAsset.Id);
 
             _context.Update(product);
+            _context.Update(inventory);
 
-            product.Available = b == true ? 1: 0;
+
+            product.Available = inventory.Stock - 1 >= 1 ? 1: 0;
+            inventory.Stock -= 1;//CHECK IF DOUBLE DEDUCTED
         }
 
         private DateTime GetDefaultRentalPeriod(DateTime now)

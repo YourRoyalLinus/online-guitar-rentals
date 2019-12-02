@@ -66,13 +66,20 @@ namespace RentalServices
             return inventory.Price;
         }
 
-        public int GetStock(int id)
+        public int GetStock(int id) //All stock vs Local user stock
         {
-            var inventory = _context.Inventory
-               .Include(i => i.RentalAsset)
-               .FirstOrDefault(i => i.RentalAsset.Id == id);
+            var invAsset = _context.Inventory
+                            .Include(i => i.RentalAsset)
+                            .GroupBy(i => i.RentalAsset.Id)
+                            .Select(inv => new
+                            {
+                                Id = inv.Key,
+                                Price = inv.Sum(i => i.Price),
+                                Stock = inv.Sum(i => i.Stock)
+                            })
+                            .FirstOrDefault(i => i.Id == id);
 
-            return inventory.Stock;
+            return invAsset.Stock;
         }
     }
 }
