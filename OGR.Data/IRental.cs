@@ -15,14 +15,14 @@ namespace RentalData
 
         void RentProduct(int assetId, int subscriberId);
 
-        void ReturnProduct(int assetId);
+        void ReturnProduct(int assetId, int subscriberId);
 
         IEnumerable<RentalHistory> GetRentalHistory(int id);
 
         IEnumerable<string> GetCurrentRentalSubs(int assetid);
 
-        void PlaceHold(int assetId, int SubscriberId);
-        string GetCurrentHoldSubscriberName(int id); //Should be multiple
+        void PlaceHold(int assetId, int subscriberId);
+        string GetCurrentHoldSubscriberName(int id);
         DateTime GetCurrentHoldPlaced(int id); 
         IEnumerable<Hold> GetCurrentHolds(int id);
 

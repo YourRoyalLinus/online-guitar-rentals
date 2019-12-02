@@ -1,5 +1,5 @@
 ﻿@model OnlineGuitarRentals.Models.Product.AssetDetailModel
-<div class="container"
+<div class="container">
      <div class="page-header clearfix detailHeading">
          <h2 class="text-muted">View Product</h2>
      </div>
@@ -32,13 +32,14 @@
             @if (Model.Available == false)
             {
                 <p id="productAvail"> Currently Unavailable</p>
-                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId"></a>Return</p>
                 <p><a class="btn btn-lg btn-warning" role="button" asp-controller="Product" asp-action="Hold" asp-route-id="@Model.AssetId"></a>Hold</p>
+                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId"></a>Return</p>
             }
 
             @if (Model.Available == true && Model.Stock > 0)
             {
                 <p><a class="btn btn-lg btn-info" role="button" asp-controller="Product" asp-action="Rent" asp-route-id="@Model.AssetId"></a>Rent</p>
+                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId"></a>Return</p>
             }
         </div>
     </div>
