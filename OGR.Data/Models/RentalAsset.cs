@@ -20,5 +20,17 @@ namespace RentalData.Models
         public float Rating { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public string AltImgUrl1 { get; set; }
+
+        public string AltImgUrl2 { get; set; }
+
+        public string AltImgUrl3 { get; set; }
+
+        public string AltImgUrl4 { get; set; }
+
+        public string AltImgUrl5 { get; set; }
+
+        public string AltImgUrl6 { get; set; }
     }
 }
