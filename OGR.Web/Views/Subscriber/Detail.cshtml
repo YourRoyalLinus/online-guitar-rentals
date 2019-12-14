@@ -1,14 +1,14 @@
 ﻿@model OnlineGuitarRentals.Models.Subscriber.SubscriberDetailModel
-
+@{
+    ViewBag.Title = Model.FullName;
+}
+<h2 class="indexTitle">Subscriber Information</h2>
 <div class="container">
-    <div class="header clearfix detailHeading">
-        <h2 class="text-muted">Subscriber Information</h2>
-    </div>
-    <div class="jumbotron">
+    <div class="jumbotron jumbotron-fluid">
         <div class="row">
             <div class="col-md-4">
                 <div>
-                    <h2>@Model.FullName</h2>
+                    <h2 id="subscriberName">@Model.FullName</h2>
                     <div class="subscriberContact">
                         <div id="subscriberId">Subscriber ID: @Model.Id</div>
                         <div id="subscriberAddress">Subscriber Address: @Model.Address</div>
@@ -20,13 +20,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 rented">
                 <h4>Assets Currently Rented Out</h4>
-                @if(@Model.AssetsRented.Any())
+                @if (@Model.AssetsRented.Any())
                 {
                     <div id="subscriberAsset">
                         <ul>
-                            @foreach(var rental in @Model.AssetsRented)
+                            @foreach (var rental in @Model.AssetsRented)
                             {
                                 <li>
                                     @rental.RentalAsset.Brand @rental.RentalAsset.Brand - (Guitar Asset ID: @rental.RentalAsset.Id)
@@ -34,12 +34,12 @@
                                         <li>
                                             Since: @rental.Since
                                         </li>
-                                        <li>                           
-                                        Returns: @rental.Until
+                                        <li>
+                                            Returns: @rental.Until
                                         </li>
                                     </ul>
                                 </li>
-                             }
+                            }
                         </ul>
                     </div>
                 }
@@ -48,16 +48,15 @@
                     <div>No items currently rented out.</div>
                 }
             </div>
-
-            <div class="col-md-4">
+            <div class="col-md-4 holds">
                 <h4>Assets Currently On Hold</h4>
-                @if(@Model.Holds.Any())
+                @if (@Model.Holds.Any())
                 {
                     <div id="subscriberHolds">
                         <ul>
-                            @foreach(var hold in @Model.Holds)
+                            @foreach (var hold in @Model.Holds)
                             {
-                            <li>@hold.RentalAsset.Brand @hold.RentalAsset.Name  - Placed on @hold.HoldPlaced.ToString("yy-dd-MM - HH:mm")</li>
+                                <li>@hold.RentalAsset.Brand @hold.RentalAsset.Name  - Placed on @hold.HoldPlaced.ToString("yy-dd-MM - HH:mm")</li>
                             }
                         </ul>
                     </div>
