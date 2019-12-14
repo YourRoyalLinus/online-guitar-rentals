@@ -3,12 +3,12 @@
     ViewBag.Title = "Distribution Center Index";
 }
 
-<h3>@ViewBag.Title</h3>
+<h2 class="indexTitle">@ViewBag.Title</h2>
 <div id="distributionIndex">
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id ="distributionTable">
         <thead>
             <tr>
-                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Name</a></th>
+                <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Distribution Center</a></th>
                 <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["DeliverSortParam"]">Delivering Now</a></th>
                 <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["AssetsSortParam"]">Number of Assets</a></th>
                 <th><a asp-controller="Distribution" asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParam"]">Total Asset Value</a></th>

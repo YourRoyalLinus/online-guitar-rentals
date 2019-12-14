@@ -1,38 +1,28 @@
 ﻿@model OnlineGuitarRentals.Models.Distribution.DistributionDetailModel
-@{ 
+@{
     ViewBag.Title = Model.Name;
 }
 
+<h2 class="indexTitle">Distribution Center Information</h2>
 <div class="container">
-    <div class="card-header clearfix detailHeading">
-        <h2 class="text-muted">Distribution Center Information</h2>
-    </div>
-    <div class="jumbotron">
-        <!--CENTER IMAGE?</!-><div class="row"></div> -->
-        <div class="row centerInfo">
-            <div class="col-md-8">
-                <h2>@Model.Name</h2>
-                <div class="centerContact">
-                    <div id="centerAddress">Address: @Model.Address</div>
-                    <div id="centerTelephone">Telephone: @Model.Telephone</div>
-                </div>
-                <div id="=centerLoc">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="jumboheader">
+            <div class="detailTitle">
+                <h4 id="centerName">@Model.Name</h4>
+                <p>
+                    <div class="centerContact">
+                        <div id="centerAddress">@Model.Address</div>
+                        <div id="centerTelephone">@Model.Telephone</div>
+                    </div>
+                </p>
+                <div id="centerLoc">
                     <div id="centerRegion">Region: @Model.Region</div>
                     <div id="centerStates">States Served: @Model.StatesServed</div>
                 </div>
-                <div id="centerCouriers">
-                    <div id="centerCouriers">Couriers: @Model.Couriers</div>
-                </div>
-                <div id="centerHours">
-                    <ul>
-                        @foreach(var day in Model.HoursOpen)
-                        {
-                            <li>@day</li>
-                        }
-                    </ul>
-                </div>
             </div>
-            <div class="col-md-4">
+        </div>
+        <div class="jumbobody">
+            <div id="centerStats">
                 <table>
                     <tr>
                         <td class="itemLabel">Number of Subscribers Serviced: </td>
@@ -47,6 +37,18 @@
                         <td class="itemValue">@Model.TotalAssetValue</td>
                     </tr>
                 </table>
+            </div>
+            <div id="centerCouriers">Couriers: @Model.Couriers</div>
+            <div id="centerHours">
+                <ul>
+                    @foreach (var day in Model.HoursOpen)
+                    {
+                        <li>@day</li>
+                    }
+                </ul>
+            </div>
+            <div>
+                <img id="centerImage" src="@Model.ImageUrl" alt="Image of @Model.Name" />
             </div>
         </div>
     </div>
