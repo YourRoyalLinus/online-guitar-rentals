@@ -20,6 +20,8 @@ namespace RentalData.Models
         [Required]
         public ShippingRegion ShippingRegion { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public virtual IEnumerable<Inventory> Inventory { get; set; }
 
     }

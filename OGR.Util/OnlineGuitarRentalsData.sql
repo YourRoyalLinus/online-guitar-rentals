@@ -22,6 +22,27 @@ insert into GuitarRentals_Dev.dbo.DistributionCenters(Name, Address, Telephone, 
 ('Texas Storage and Shipping', '13 Texas Street, North, Houston, Texas 77001', '281-130-8181', 3),
 ('Ohio Shipping Center', '41 Buckeye Drive, Columbus, Ohio, 43004', '740-221-7777', 5)
 
+
+update GuitarRentals_Dev.dbo.DistributionCenters
+set ImageUrl = '/images/Distribution Center Images/Virginia_Shipping_Center.jpg'
+where id = 1
+
+update GuitarRentals_Dev.dbo.DistributionCenters
+set ImageUrl = '/images/Distribution Center Images/California_Shipping_Warehouse.jpg'
+where id = 2
+
+update GuitarRentals_Dev.dbo.DistributionCenters
+set ImageUrl = '/images/Distribution Center Images/NY_Warehousing.jpg'
+where id = 3
+
+update GuitarRentals_Dev.dbo.DistributionCenters
+set ImageUrl = '/images/Distribution Center Images/Texas_Storage_and_Shipping.jpg'
+where id = 4
+
+update GuitarRentals_Dev.dbo.DistributionCenters
+set ImageUrl = '/images/Distribution Center Images/Ohio_Shipping_Center.jpg'
+where id = 5
+
 select* from GuitarRentals_Dev.dbo.DistributionCenters
 commit tran
 */
@@ -36,7 +57,7 @@ insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, Delivery
 (1,'UPS', '8:30:00.00', '18:30:00.00', 4 ),
 (1,'UPS', '8:30:00.00', '18:30:00.00', 5 ),
 (1,'UPS', '8:30:00.00', '16:30:00.00', 6 ),
-(1,'UPS', '8:30:00.00', '16:30:00.00', 7 ),
+(1,'UPS', '8:30:00.00', '16:30:00.00', 0 ),
 
 (2,'FedEx', '7:30:00.00', '21:00:00.00', 1 ),
 (2,'FedEx', '7:30:00.00', '21:00:00.00', 2 ),
@@ -45,6 +66,10 @@ insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, Delivery
 (2,'FedEx', '7:30:00.00', '21:00:00.00', 5 ),
 (3,'FedEx', '7:30:00.00', '12:30:00.00', 6 ),
 (3,'FedEx', '7:30:00.00', '12:30:00.00', 7 )
+
+update GuitarRentals_Dev.dbo.Couriers 
+set DayOfWeek = 0
+where DayOfWeek = 7 
 
 select* from GuitarRentals_Dev.dbo.Couriers
 commit Tran

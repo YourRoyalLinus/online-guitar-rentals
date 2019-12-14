@@ -19,8 +19,7 @@ namespace OnlineGuitarRentals.Models.Distribution
         public int NumberOfSubscribers { get; set; }
         public double TotalAssetValue { get; set; }
         public int TotalStock { get; set; }
-
-        //public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         public IEnumerable<string> HoursOpen { get; set; }
 

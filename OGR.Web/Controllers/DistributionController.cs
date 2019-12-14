@@ -29,6 +29,7 @@ namespace OnlineGuitarRentals.Controllers
                 Name = center.Name,
                 Address = center.Address,
                 Telephone = center.Telephone,
+                ImageUrl = center.ImageUrl,
                 Region = _distribution.GetDeliveryRegion(center.Id),
                 StatesServed = _distribution.GetDeliveryStates(center.Id),
                 IsDelivering = _distribution.IsDelivering(center.Id),
@@ -36,7 +37,7 @@ namespace OnlineGuitarRentals.Controllers
                 TotalAssetValue = _distribution.GetTotalAssetValue(center.Id),
                 TotalStock = _distribution.GetTotalStock(center.Id)
 
-            });
+            }); ;
 
             switch (sortOrder)
             {
@@ -90,6 +91,7 @@ namespace OnlineGuitarRentals.Controllers
                 Name = center.Name,
                 Address = center.Address,
                 Telephone = center.Telephone,
+                ImageUrl = center.ImageUrl,
                 Region = _distribution.GetDeliveryRegion(id),
                 StatesServed = _distribution.GetDeliveryStates(id),
                 IsDelivering = _distribution.IsDelivering(id),
