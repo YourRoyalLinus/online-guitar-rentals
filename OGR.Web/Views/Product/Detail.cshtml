@@ -1,102 +1,159 @@
 ﻿@model OnlineGuitarRentals.Models.Product.AssetDetailModel
+@{
+    ViewData["Title"] = @Model.Brand + " " + @Model.Name;
+}
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function () {
+                $(".content .imageDiv div.altImages #altImg1").click(function () {
+                $(".content div.imageDiv #mainImage").attr("src", "@Model.ImageUrl")
+                $(".content .imageDiv div.altImages img").css("border", "2px solid grey")
+                $(".content .imageDiv div.altImages #altImg1").css("border", "solid 2px orange")
+            });
+        });
+        </script>
+        <script>
+        $(document).ready(function () {
+                $(".content .imageDiv div.altImages #altImg2").click(function () {
+                $(".content div.imageDiv #mainImage").attr("src", "@Model.AltImageUrl1")
+                $(".content .imageDiv div.altImages img").css("border", "2px solid grey")
+                $(".content .imageDiv div.altImages #altImg2").css("border", "solid 2px orange")
+            });
+        });
+        </script>
+        <script>
+        $(document).ready(function () {
+                $(".content .imageDiv div.altImages #altImg3").click(function () {
+                $(".content div.imageDiv #mainImage").attr("src", "@Model.AltImageUrl2")
+                $(".content .imageDiv div.altImages img").css("border", "2px solid grey")
+                $(".content .imageDiv div.altImages #altImg3").css("border", "solid 2px orange")
+            });
+        });
+        </script>
+        <script>
+        $(document).ready(function () {
+                $(".content .imageDiv div.altImages #altImg4").click(function () {
+                $(".content div.imageDiv #mainImage").attr("src", "@Model.AltImageUrl3")
+                $(".content .imageDiv div.altImages img").css("border", "2px solid grey")
+                $(".content .imageDiv div.altImages #altImg4").css("border", "solid 2px orange")
+            });
+        });
+        </script>
+        <script>
+                $(document).ready(function () {
+                $(".content .imageDiv div.altImages #altImg5").click(function () {
+                $(".content div.imageDiv #mainImage").attr("src", "@Model.AltImageUrl4")
+                $(".content .imageDiv div.altImages img").css("border", "2px solid grey")
+                $(".content .imageDiv div.altImages #altImg5").css("border", "solid 2px orange")
+            });
+        });
+        </script>
+        <script>
+        $(document).ready(function () {
+            $(".content .imageDiv div.altImages #altImg6").click(function () {
+                $(".content div.imageDiv #mainImage").attr("src", "@Model.AltImageUrl5")
+                $(".content .imageDiv div.altImages img").css("border", "2px solid grey")
+                $(".content .imageDiv div.altImages #altImg6").css("border", "solid 2px orange")
+            });
+        });
+        </script>
+    </head>
 <div class="container">
-     <div class="page-header clearfix detailHeading">
-         <h2 class="text-muted">View Product</h2>
-     </div>
-</div>
-
-<div class="jumbotron">
-    <div class="row">
-        <div class="col-md-4">
-            <div>
-                <img class="detailImage" src="@Model.ImageUrl" />
+    <h2 class="productDetailTitle">@ViewData["Title"]</h2>
+    <div class="row content">
+        <div class="imageDiv">
+            <img class="detailImage" src="@Model.ImageUrl" alt="Asset Main Image" id="mainImage" />
+            <div class="altImages">
+                <img src="@Model.ImageUrl" alt="Alt Image 1" id="altImg1" />
+                <img src="@Model.AltImageUrl1" alt="Alt Image 2" id="altImg2" />
+                <img src="@Model.AltImageUrl2" alt="Alt Image 3" id="altImg3" />
+                <img src="@Model.AltImageUrl3" alt="Alt Image 4" id="altImg4" />
+                <img src="@Model.AltImageUrl4" alt="Alt Image 5" id="altImg5" />
+                <img src="@Model.AltImageUrl5" alt="Alt Image 6" id="altImg6" />
             </div>
         </div>
-        <div class="col-md-4">
-            <p id="productBrand">@Model.Brand</p>
-            <p id="productName">@Model.Name</p>
-            <p id="productDesc">@Model.Description</p>
-            <p id="productRating">@Model.Rating</p>
-            <p id="productPrice">@Model.Price</p>
+        <div class="col-md-7 detailSpecs">
+            <p id="productDesc"><span style="font-weight: bold">Product Description</span><br />@Model.Description</p>
+            <p id="productRating"><span style="font-weight: bold">Rating</span><br />@Model.Rating</p>
+            <p id="productPrice"><span style="font-weight: bold">Price</span><br />$@Model.Price</p>
             @if (Model.Stock == 0)
             {
-                <p id="productOutStock">Currently Out of Stock</p>
+                <p id="productOutStock"><span style="font-weight: bold">Available</span><br />Currently Unavailable</p>
             }
             else
             {
-                <p id="productStock">@Model.Stock</p>
+                <p id="productStock"><span style="font-weight: bold">Available</span><br />@Model.Stock</p>
             }
 
             <p id="productShipLoc">@Model.ShippingLocation</p>
 
             @if (Model.Available == false)
             {
-                <p id="productAvail"> Currently Unavailable</p>
-                <p><a class="btn btn-lg btn-warning" role="button" asp-controller="Product" asp-action="Hold" asp-route-id="@Model.AssetId"></a>Hold</p>
-                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId"></a>Return</p>
+                <p><a class="btn btn-lg btn-warning returnBtn btns" role="button" asp-controller="Product" asp-action="Hold" asp-route-id="@Model.AssetId">Hold</a></p>
+                <p><a class="btn btn-lg btn-success holdBtn btns" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId">Return</a></p>
             }
 
             @if (Model.Available == true && Model.Stock > 0)
             {
-                <p><a class="btn btn-lg btn-info" role="button" asp-controller="Product" asp-action="Rent" asp-route-id="@Model.AssetId"></a>Rent</p>
-                <p><a class="btn btn-lg btn-success" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId"></a>Return</p>
+                <p><a class="btn btn-lg btn-info rentBtn btns" role="button" asp-controller="Product" asp-action="Rent" asp-route-id="@Model.AssetId">Rent</a></p>
+                <p><a class="btn btn-lg btn-success holdBtn btns" role="button" asp-controller="Product" asp-action="Return" asp-route-id="@Model.AssetId">Return</a></p>
             }
+            <div class="row dataTables">
+                <div class="col-lg-6 rentalHistory">
+                    <h4>Rental History</h4>
+                    <table class="table table-bordered table-hover table-condensed" id="rentHistoryTable">
+                        <thead>
+                            <tr>
+                                <th>Date Rented</th>
+                                <th>Date Returned</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var rental in @Model.RentalHistory)
+                            {
+                                <tr>
+                                    <td>
+                                        @rental.RentedOut
+                                    </td>
+                                    <td>
+                                        @rental.Returned
+                                    </td>
+                                    <td>
+                                        @rental.Subscriber.FirstName @rental.Subscriber.LastName
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-6 currentHolds">
+                    <h4>Current Holds</h4>
+                    <table class="table table-bordered table-hover table-condensed" id="currHoldsTable">
+                        <thead>
+                            <tr>
+                                <th>Hold Placed</th>
+                                <th>Subscriber</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var hold in @Model.CurrentHolds)
+                            {
+                                <tr>
+                                    <td>
+                                        @hold.HoldPlace
+                                    </td>
+                                    <td>
+                                        @hold.Subscriber
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6">
-        <h4>Rental History</h4>
-        <table class="table table-bordered table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Date Rented</th>
-                    <th>Date Returned</th>
-                    <th>Name</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var rental in @Model.RentalHistory)
-                {
-                    <tr>
-                        <td>
-                            @rental.RentedOut
-                        </td>
-                        <td>
-                            @rental.Returned
-                        </td>
-                        <td>
-                            @rental.Subscriber.FirstName @rental.Subscriber.LastName
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="col-lg-6">
-        <h4>Current Holds</h4>
-        <table class="table table-bordered table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Hold Placed</th>
-                    <th>Subscriber</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var hold in @Model.CurrentHolds)
-                {
-                    <tr>
-                        <td>
-                            @hold.HoldPlace
-                        </td>
-                        <td>
-                            @hold.Subscriber + " " + @hold.Subscriber
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
 </div>
 

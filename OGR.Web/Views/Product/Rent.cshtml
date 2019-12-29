@@ -1,15 +1,69 @@
 ﻿@model OnlineGuitarRentals.Models.Rentals.RentalModel
 
 @{
-    ViewBag.Title = @Model.Name;
+    ViewData["Title"] = "Rent Out " + @Model.Name;
 }
 
-@*@model is the model directive*@
 
 @section Scripts{
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+                $(".contentBox .subBox div.altImages #altImg1").click(function () {
+                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.ImageUrl")
+                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
+                $(".contentBox .subBox div.altImages #altImg1").css("border", "solid 2px orange")
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+                $(".contentBox .subBox div.altImages #altImg2").click(function () {
+                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl1")
+                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
+                $(".contentBox .subBox div.altImages #altImg2").css("border", "solid 2px orange")
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+                $(".contentBox .subBox div.altImages #altImg3").click(function () {
+                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl2")
+                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
+                $(".contentBox .subBox div.altImages #altImg3").css("border", "solid 2px orange")
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+                $(".contentBox .subBox div.altImages #altImg4").click(function () {
+                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl3")
+                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
+                $(".contentBox .subBox div.altImages #altImg4").css("border", "solid 2px orange")
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+                $(".contentBox .subBox div.altImages #altImg5").click(function () {
+                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl4")
+                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
+                $(".contentBox .subBox div.altImages #altImg5").css("border", "solid 2px orange")
+            });
+        });
+    </script>
+    <script>
+                $(document).ready(function () {
+                $(".contentBox .subBox div.altImages #altImg6").click(function () {
+                $(".contentBox .col-md-6 div #mainImage ").attr("src", "@Model.AltImageUrl5")
+                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
+                $(".contentBox .subBox div.altImages #altImg6").css("border", "solid 2px orange")
+            });
+        });
+    </script>
 }
 
 @section Styles{
@@ -17,33 +71,35 @@
 }
 
 <div class="container">
-    <div class="header clearfix detailHeading">
-        <h2 class="text-muted">Rent Out Product</h2>
-    </div>
-
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-3">
-                <div>
-                    <p id="itemTitle">@Model.Name</p>
-                    <img class="detailImage" src="@Model.ImageUrl" />
-                </div>
+    <h3 class="productDetailTitle">Rent Out Product</h3>
+    <div class="row contentBox">
+        <div class="col-md-6">
+            <div>
+                <img class="detailImage" src="@Model.ImageUrl" alt="Asset Main Image" id="mainImage" />
             </div>
-            @*you could also use tag helpers.*@
-            <div class="col-md-9">
-                @*this is an html helper - it creates an object that implements idisposable*@
-                @using (Html.BeginForm("RentOutProduct", "Product", FormMethod.Post))
-                {
-                    @Html.HiddenFor(a => a.AssetId)
-                    <div>
-                        Please insert your Subscriber ID.
-                        @Html.TextBoxFor(a => a.SubscriberId)
-                        @*write out a text box and set attributes according to info in the model*@
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-success btn-lg">Rent Out</button>
-                    </div>
-                }
+        </div>
+        <div class="subBox">
+            <div>
+                <p id="itemTitle">@Model.Name</p>
+            </div>
+            @using (Html.BeginForm("RentOutProduct", "Product", FormMethod.Post))
+            {
+                @Html.HiddenFor(a => a.AssetId)
+                <div class="formField">
+                    Please insert your Subscriber ID:
+                    @Html.TextBoxFor(a => a.SubscriberId)
+                </div>
+                <div class="formBtnRent">
+                    <button type="submit" class="btn btn-success btn-lg">Rent Out</button>
+                </div>
+            }
+            <div class="altImages">
+                <img src="@Model.ImageUrl" alt="Alt Image 1" id="altImg1" />
+                <img src="@Model.AltImageUrl1" alt="Alt Image 2" id="altImg2" />
+                <img src="@Model.AltImageUrl2" alt="Alt Image 3" id="altImg3" />
+                <img src="@Model.AltImageUrl3" alt="Alt Image 4" id="altImg4" />
+                <img src="@Model.AltImageUrl4" alt="Alt Image 5" id="altImg5" />
+                <img src="@Model.AltImageUrl5" alt="Alt Image 6" id="altImg6" />
             </div>
         </div>
     </div>

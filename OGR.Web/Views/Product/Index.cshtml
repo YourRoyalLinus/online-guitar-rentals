@@ -1,42 +1,44 @@
 ﻿@model OnlineGuitarRentals.Models.Product.AssetIndexModel
-
+@{ 
+    ViewData["Title"] = "All Product Listings";
+}
 <div id="assets">
-    <h3>All Product Listings</h3>
+    <h3 class="productTitle">All Product Listings</h3>
     <form asp-controller="Product" asp-action="Index" method="get">
         <div class="form-actions no-color">
             <p>
-                <input type="text" name="search" value="@ViewData["CurrentFilter"]" />
-                <input type="submit" value="Search" class="btn btn-primary" /> | 
+                <input type="text" id="searchBar" name="search" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" id="searchBtn" value="Search" class="btn btn-primary" /> | 
                 <a asp-action="Index">Back to Full Catalog</a>
             </p>
         </div>
     </form>
     <div id="assetsTable">
-        <table class="table table-condensed" id="productIndexTable">
+        <table class="table" id="productIndexTable">
             <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Brand</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Rating</th>
-                    <th>Available</th>
+                    <th></th>
+                    <th class="name">Brand</th>
+                    <th class="name">Name</th>
+                    <th class="desc">Description</th>
+                    <th class="num">Rating</th>
+                    <th class="num">Available</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var asset in Model.Assets)
                 {
                     <tr class="assetRow">
-                        <td class="">
+                        <td class="assetImg">
                             <a asp-controller="Product" asp-action="Detail" asp-route-id="@asset.Id">
                             <img src="@asset.ImageUrl" class="imageCell" />
                             </a>
                         </td>
-                        <td class="">@asset.Brand</td>
-                        <td class="">@asset.Name</td>
-                        <td class="">@asset.Description</td>
-                        <td class="">@asset.Rating</td>
-                        <td class="">@asset.Available</td>
+                        <td class="assetBrand">@asset.Brand</td>
+                        <td class="assetName">@asset.Name</td>
+                        <td class="assetDesc">@asset.Description</td>
+                        <td class="assetRate">@asset.Rating</td>
+                        <td class="assetAvail">@asset.Available</td>
                     </tr>
                 }
             </tbody>

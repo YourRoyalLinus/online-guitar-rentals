@@ -1,15 +1,15 @@
 ﻿@model OnlineGuitarRentals.Models.Product.GuitarIndexModel
 @{ 
-    ViewBag.Title = "Product Listings - " + @Model.Guitars.FirstOrDefault().Type + " Guitars";
+    ViewData["Title"] = "Product Listings - " + @Model.Guitars.FirstOrDefault().Type + " Guitars";
 }
     <div id="assets">
-        <h3>@ViewBag.Title</h3>
-        <form asp-controller="Product" asp-action="Index" method="get">
+        <h3 class="productTitle">@ViewData["Title"]</h3>
+        <form asp-controller="Product" asp-action="TypeIndex" method="get">
             <div class="form-actions no-color">
                 <p>
-                    <input type="text" name="search" value="@ViewData["CurrentFilter"]" />
-                    <input type="submit" value="Search" class="btn btn-primary" /> |
-                    <a asp-action="Index">Back to Full Catalog</a>
+                    <input type="text" id="searchBar" name="search" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" id="searchBtn" value="Search" class="btn btn-primary" /> |
+                    <a asp-controller="Product" asp-action="TypeIndex" asp-route-type=@Model.Guitars.FirstOrDefault().Type>Back to Full Catalog</a>
                 </p>
             </div>
         </form>
@@ -17,34 +17,34 @@
             <table class="table table-condensed" id="productIndexTable">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Type</th>
-                        <th>Brand</th>
-                        <th>Name</th>
-                        <th>Style</th>
-                        <th>Number of Strings</th>
-                        <th>Description</th>
-                        <th>Rating</th>
-                        <th>Available</th>
+                        <th></th>
+                        <th class="name">Type</th>
+                        <th class="name">Brand</th>
+                        <th class="name">Name</th>
+                        <th class="name">Style</th>
+                        <th class="num">Strings</th>
+                        <th class="desc">Description</th>
+                        <th class="num">Rating</th>
+                        <th class="num">Available</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var guitar in Model.Guitars)
                     {
                         <tr class="assetRow">
-                            <td class="">
+                            <td class="assetImg">
                                 <a asp-controller="Product" asp-action="Detail" asp-route-type="@guitar.Type" asp-route-id="@guitar.Id">
-                                    <img src="@guitar.ImageUrl" class="imageCell" />
+                                    <img src="@guitar.ImageUrl" class="imageCell" id="typeImg" />
                                 </a>
                             </td>
-                            <td class="">@guitar.Type</td>
-                            <td class="">@guitar.Brand</td>
-                            <td class="">@guitar.Name</td>
-                            <td class="">@guitar.Style</td>
-                            <td class="">@guitar.NumberOfStrings</td>
-                            <td class="">@guitar.Description</td>
-                            <td class="">@guitar.Rating</td>
-                            <td class="">@guitar.Available</td>
+                            <td class="assetType">@guitar.Type</td>
+                            <td class="assetBrand">@guitar.Brand</td>
+                            <td class="assetName">@guitar.Name</td>
+                            <td class="assetStyle">@guitar.Style</td>
+                            <td class="assetStrings">@guitar.NumberOfStrings</td>
+                            <td class="assetDesc">@guitar.Description</td>
+                            <td class="assetRate">@guitar.Rating</td>
+                            <td class="assetAvail">@guitar.Available</td>
                         </tr>
                     }
                 </tbody>
