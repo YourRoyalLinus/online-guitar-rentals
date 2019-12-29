@@ -1,4 +1,4 @@
-/* DONE
+/* Insert Initial Values into [ShippingRegions] Table */
 Begin Tran
 
 insert into GuitarRentals_Dev.dbo.ShippingRegions(Abbrv, Region, States) Values
@@ -10,9 +10,8 @@ insert into GuitarRentals_Dev.dbo.ShippingRegions(Abbrv, Region, States) Values
 
 select* from GuitarRentals_Dev.dbo.ShippingRegions
 Commit Tran
-*/
 
-/* DONE
+/* Insert Initial Values into [DistributionCenters] Table */
 Begin Tran
 
 insert into GuitarRentals_Dev.dbo.DistributionCenters(Name, Address, Telephone, ShippingRegionId) Values
@@ -22,7 +21,7 @@ insert into GuitarRentals_Dev.dbo.DistributionCenters(Name, Address, Telephone, 
 ('Texas Storage and Shipping', '13 Texas Street, North, Houston, Texas 77001', '281-130-8181', 3),
 ('Ohio Shipping Center', '41 Buckeye Drive, Columbus, Ohio, 43004', '740-221-7777', 5)
 
-
+/* Update ImageUrl Field with .JPEG of DistributionCenter */
 update GuitarRentals_Dev.dbo.DistributionCenters
 set ImageUrl = '/images/Distribution Center Images/Virginia_Shipping_Center.jpg'
 where id = 1
@@ -45,9 +44,9 @@ where id = 5
 
 select* from GuitarRentals_Dev.dbo.DistributionCenters
 commit tran
-*/
 
-/* DONE
+
+/* Insert Initial Values into [Couriers] Table */
 Begin Tran
 
 insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, DeliveryStartTime, DeliveryEndTime, DayOfWeek) Values
@@ -67,6 +66,7 @@ insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, Delivery
 (3,'FedEx', '7:30:00.00', '12:30:00.00', 6 ),
 (3,'FedEx', '7:30:00.00', '12:30:00.00', 7 )
 
+/* Fix Day of Week issue between Backend Table and DayOfWeek Enum in C# */
 update GuitarRentals_Dev.dbo.Couriers 
 set DayOfWeek = 0
 where DayOfWeek = 7 
@@ -74,6 +74,7 @@ where DayOfWeek = 7
 select* from GuitarRentals_Dev.dbo.Couriers
 commit Tran
 
+/* Insert Addtional Values into [Couriers] Table */
 Begin Tran
 
 insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, DeliveryStartTime, DeliveryEndTime, DayOfWeek) Values
@@ -88,9 +89,7 @@ insert into GuitarRentals_Dev.dbo.Couriers( DistributionCenterId, Name, Delivery
 select* from GuitarRentals_Dev.dbo.Couriers 
 commit Tran
 
-*/
-
-/* DONE
+/* Insert Initial Values into [RentalAssets] Table */
 Begin Tran
 
 Insert into GuitarRentals_Dev.dbo.RentalAssets(Brand, Name, Available, Description, Rating, ImageUrl, Discriminator, Type, Style, NumberOfStrings, Specifications) Values
@@ -105,6 +104,7 @@ Insert into GuitarRentals_Dev.dbo.RentalAssets(Brand, Name, Available, Descripti
 ('Fender',' Player Jazz Bass Maple Fingerboard', 0, 'With its dual single-coil pickups and smooth playing feel, the Player Jazz Bass is an inspiring instrument with classic, elevated style and authentic Fender bass tone.', 5, '*TBD*', 'Guitar', 'Bass', '3-Color Sunburst', 4, 'Alder body with gloss finish, Two Player Series single-coil Jazz Bass pickups, Two volume controls, master tone control, “Modern C"-shaped neck profile, 9.5"-radius fingerboard'),
 ('Fender',' Player Jazz Bass Maple Fingerboard', 1, 'With its dual single-coil pickups and smooth playing feel, the Player Jazz Bass is an inspiring instrument with classic, elevated style and authentic Fender bass tone.', 5, '*TBD*', 'Guitar', 'Bass', 'Polar White', 4, 'Alder body with gloss finish, Two Player Series single-coil Jazz Bass pickups, Two volume controls, master tone control, “Modern C"-shaped neck profile, 9.5"-radius fingerboard')
 
+/* Update ImageUrl Field with .PNG of each guitar */
 
 update GuitarRentals_Dev.dbo.RentalAssets
 set ImageUrl = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst.png' 
@@ -138,12 +138,185 @@ update GuitarRentals_Dev.dbo.RentalAssets
 set ImageUrl = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut.png' 
 where Id = 5
 
+/* Update AltImgUrl[1-5] Fields with .PNGs for each altername image of the asset */
+
+/*1*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Dragon_Eye_Burst_A1.png'
+where Id = 1
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Dragon_Eye_Burst_A2.png'
+where Id = 1
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Dragon_Eye_Burst_A3.png'
+where Id = 1
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Dragon_Eye_Burst_A4.png'
+where Id = 1
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Dragon_Eye_Burst_A5.png'
+where Id = 1
+
+/*2*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Blue_Lagoon_Burst_A1.png'
+where Id = 2
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Blue_Lagoon_Burst_A2.png'
+where Id = 2
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Blue_Lagoon_Burst_A3.png'
+where Id = 2
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Blue_Lagoon_Burst_A4.png'
+where Id = 2
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Electric/Ibanez-RGA_Series_RGAR42MFMT-Flat_Blue_Lagoon_Burst_A5.png'
+where Id = 2
+
+/*3*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Matte_Natural_A1.png'
+where Id = 3
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Matte_Natural_A2.png'
+where Id = 3
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Matte_Natural_A3.png'
+where Id = 3
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Matte_Natural_A4.png'
+where Id =3
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Matte_Natural_A5.png'
+where Id = 3
+
+/*4*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pink_A1.png'
+where Id = 4
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pink_A2.png'
+where Id = 4
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pink_A3.png'
+where Id = 4
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pink_A4.png'
+where Id = 4
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Pink_A5.png'
+where Id = 4
+
+/*5*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut_A1.png'
+where Id = 5
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut_A2.png'
+where Id = 5
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut_A3.png'
+where Id = 5
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut_A4.png'
+where Id = 5
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Walnut_A5.png'
+where Id = 5
+
+/*6*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Black_A1.png'
+where Id = 6
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Black_A2.png'
+where Id = 6
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Black_A3.png'
+where Id = 6
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Black_A4.png'
+where Id = 6
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Acoustic/Rogue-Starter_Acoustic_Guitar-Black_A5.png'
+where Id = 6
+
+/*7*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst_A1.png'
+where Id = 7
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst_A2.png'
+where Id = 7
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst_A3.png'
+where Id = 7
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst_A4.png'
+where Id = 7
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-3Color_Sunburst_A5.png'
+where Id = 7
+
+/*8*/
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl1 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White_A1.png'
+where Id = 8
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl2 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White_A2.png'
+where Id = 8
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl3 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White_A3.png'
+where Id = 8
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl4 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White_A4.png'
+where Id = 8
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White_A5.png'
+where Id = 8
+
+update GuitarRentals_Dev.dbo.RentalAssets
+set AltImgUrl5 = '/images/Product Images/Bass/Fender-Player_Jazz_Bass_Maple_Fingerboard-Polar_White_A5.png'
 
 select* from GuitarRentals_Dev.dbo.RentalAssets
 Commit Tran
-*/
 
-/*
+
+/* Insert Initial Values into [Inventory] Table */
+
 Begin Tran
 
 insert into GuitarRentals_Dev.dbo.Inventory(RentalAssetId, Price, Stock, DistributionCenterId) Values
@@ -168,7 +341,7 @@ insert into GuitarRentals_Dev.dbo.Inventory(RentalAssetId, Price, Stock, Distrib
 (2, 399.99, 2, 5),
 (6, 49.99, 7, 5)
 
-
+/* Update the Price Field of certain RentalAssets */
 update GuitarRentals_Dev.dbo.Inventory
 set price = 54.99
 where RentalAssetId in (3, 6)
@@ -184,9 +357,9 @@ where RentalAssetId = 3 and id = 13
 
 select distinct* from GuitarRentals_Dev.dbo.Inventory 
 Commit Tran
-*/
 
-/*
+
+/* Insert Initial Values into [Users] Table */
 Begin Tran
 
 insert into GuitarRentals_Dev.dbo.Users(FirstName, LastName, Address, Email, Telephone, DateOfBirth, Discriminator, ShippingRegionId, RenewalDate, ExperationDate, Active) Values
@@ -207,16 +380,9 @@ insert into GuitarRentals_Dev.dbo.Users(FirstName, LastName, Address, Email, Tel
 select* from GuitarRentals_Dev.dbo.Users
 Commit Tran
 
-*/
-
-/*
+/* Check if [Holds]/[RentalHistories]/[Rentals] Tables contain Any Data */
 select* from GuitarRentals_Dev.dbo.Holds
-*/
 
-/*
 select* from GuitarRentals_Dev.dbo.RentalHistories
-*/
 
-/*
 select* from GuitarRentals_Dev.dbo.Rentals  
-*/
