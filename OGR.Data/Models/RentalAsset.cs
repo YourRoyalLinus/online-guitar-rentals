@@ -31,6 +31,5 @@ namespace RentalData.Models
 
         public string AltImgUrl5 { get; set; }
 
-        public string AltImgUrl6 { get; set; }
     }
 }

@@ -14,6 +14,16 @@ namespace OnlineGuitarRentals.Models.Rentals
         
         public string ImageUrl { get; set; }
 
+        public string AltImageUrl1 { get; set; }
+
+        public string AltImageUrl2 { get; set; }
+
+        public string AltImageUrl3 { get; set; }
+
+        public string AltImageUrl4 { get; set; }
+
+        public string AltImageUrl5 { get; set; }
+
         public int HoldCount { get; set; }
 
         public bool OutOfStock { get; set; }

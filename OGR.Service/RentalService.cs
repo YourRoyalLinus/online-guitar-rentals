@@ -39,7 +39,7 @@ namespace RentalServices
             return _context.Holds
                 .Include(h => h.RentalAsset)
                 .Include(h => h.Subscriber)
-                .FirstOrDefault(h => h.Id == id)
+                .FirstOrDefault(h => h.RentalAsset.Id == id)
                 .HoldPlaced;
         }
 
@@ -56,7 +56,7 @@ namespace RentalServices
             var hold = _context.Holds
                 .Include(h => h.RentalAsset)
                 .Include(h => h.Subscriber)
-                .FirstOrDefault(h => h.Id == id);
+                .FirstOrDefault(h => h.RentalAsset.Id == id);
 
             return hold.Subscriber?.FirstName + " " + hold.Subscriber?.LastName;
         }
