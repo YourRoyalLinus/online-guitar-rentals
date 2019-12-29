@@ -2,6 +2,7 @@
 using OnlineGuitarRentals.Models.Product;
 using OnlineGuitarRentals.Models.Rentals;
 using RentalData;
+using System;
 using System.Linq;
 
 namespace OnlineGuitarRentals.Controllers
@@ -76,7 +77,7 @@ namespace OnlineGuitarRentals.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                listingResult = listingResult.Where(r => r.Name.Contains(search) || r.Brand.Contains(search));
+                listingResult = listingResult.Where(r => r.Name.Contains(search) || r.Brand.Contains(search) || r.Style.Contains(search) || r.NumberOfStrings.ToString().Contains(search));
             }
 
             var model = new GuitarIndexModel()
@@ -109,6 +110,11 @@ namespace OnlineGuitarRentals.Controllers
                 Stock = _assets.GetStock(id),
                 Available = _assets.GetAvailable(id),
                 ImageUrl = asset.ImageUrl,
+                AltImageUrl1 = asset.AltImgUrl1,
+                AltImageUrl2 = asset.AltImgUrl2,
+                AltImageUrl3 = asset.AltImgUrl3,
+                AltImageUrl4 = asset.AltImgUrl4,
+                AltImageUrl5 = asset.AltImgUrl5,
                 RentalHistory = _rentals.GetRentalHistory(id),
                 LatestRental = _rentals.GetRecentRental(id),
                 CurrentHolds = currentHolds
@@ -125,6 +131,11 @@ namespace OnlineGuitarRentals.Controllers
             {
                 AssetId = id,
                 ImageUrl = asset.ImageUrl,
+                AltImageUrl1 = asset.AltImgUrl1,
+                AltImageUrl2 = asset.AltImgUrl2,
+                AltImageUrl3 = asset.AltImgUrl3,
+                AltImageUrl4 = asset.AltImgUrl4,
+                AltImageUrl5 = asset.AltImgUrl5,
                 Name = asset.Brand + " " + asset.Name,
                 SubscriberId = 0,
                 OutOfStock = _assets.GetStock(id) > 0,
@@ -141,6 +152,11 @@ namespace OnlineGuitarRentals.Controllers
             {
                 AssetId = id,
                 ImageUrl = asset.ImageUrl,
+                AltImageUrl1 = asset.AltImgUrl1,
+                AltImageUrl2 = asset.AltImgUrl2,
+                AltImageUrl3 = asset.AltImgUrl3,
+                AltImageUrl4 = asset.AltImgUrl4,
+                AltImageUrl5 = asset.AltImgUrl5,
                 Name = asset.Brand + " " + asset.Name,
                 SubscriberId = 0,
                 OutOfStock = _assets.GetStock(id) > 0
@@ -157,6 +173,11 @@ namespace OnlineGuitarRentals.Controllers
             {
                 AssetId = id,
                 ImageUrl = asset.ImageUrl,
+                AltImageUrl1 = asset.AltImgUrl1,
+                AltImageUrl2 = asset.AltImgUrl2,
+                AltImageUrl3 = asset.AltImgUrl3,
+                AltImageUrl4 = asset.AltImgUrl4,
+                AltImageUrl5 = asset.AltImgUrl5,
                 Name = asset.Brand + " " + asset.Name,
                 SubscriberId = 0,
                 OutOfStock = _assets.GetStock(id) > 0
@@ -168,7 +189,14 @@ namespace OnlineGuitarRentals.Controllers
         [HttpPost]
         public IActionResult ReturnProduct(int assetId, int subscriberId)
         {
-            _rentals.ReturnProduct(assetId, subscriberId); 
+            try
+            {
+               _rentals.ReturnProduct(assetId, subscriberId);
+            }
+            catch(InvalidOperationException)
+            {
+                return StatusCode(401);
+            }
             return RedirectToAction("Detail", new { id = assetId });
 
         }
@@ -176,15 +204,28 @@ namespace OnlineGuitarRentals.Controllers
         [HttpPost]
         public IActionResult RentOutProduct(int assetId, int subscriberId)
         {
-            _rentals.RentProduct(assetId, subscriberId);
-
+            try
+            {
+                _rentals.RentProduct(assetId, subscriberId);
+            }
+            catch(InvalidOperationException)
+            {
+                return StatusCode(401);
+            }
             return RedirectToAction("Detail", new { id = assetId });
         }
 
         [HttpPost]
         public IActionResult PlaceHold(int assetId, int subscriberId)
         {
-            _rentals.PlaceHold(assetId, subscriberId);
+            try
+            {
+                _rentals.PlaceHold(assetId, subscriberId);
+            }
+            catch (InvalidOperationException)
+            {
+                return StatusCode(401);
+            }
             return RedirectToAction("Detail", new { id = assetId });
         }
     }
