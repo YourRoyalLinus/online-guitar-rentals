@@ -86,6 +86,7 @@ namespace OnlineGuitarRentals.Controllers
 
             var model = new SubscriberDetailModel
             {
+                Id = subscriber.Id,
                 FirstName = subscriber.FirstName,
                 LastName = subscriber.LastName,
                 Address = subscriber.Address,
