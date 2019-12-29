@@ -21,15 +21,16 @@
     
 }
 .demo-card-square.mdl-card {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
+    margin: 1em 1em;
 
 }
 
 #electric {
     background-image: url('/images/Site Images/Home/electric.jpg');
-    width: 400px;
-    height: 400px;
+    width: inherit;
+    height: inherit;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -37,9 +38,8 @@
 }
 
 #electric a {
-
-    width: 400px;
-    height: 400px;
+    width: inherit;
+    height: inherit;
 }
 
 #electric-cell > .card-text {
@@ -69,8 +69,8 @@
 
 #bass {
     background-image: url('/images/Site Images/Home/bass.jpg');
-    width: 400px;
-    height: 400px;
+    width: inherit;
+    height: inherit;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -78,8 +78,8 @@
 }
 
 #bass a{
-    height:400px;
-    width:400px;
+    height: inherit;
+    width: inherit;
 }
 
 #bass-cell {
@@ -106,8 +106,8 @@
 
 #acoustic {
     background-image: url('/images/Site Images/Home/acoustic.jpg');
-    width: 400px;
-    height: 400px;
+    width: inherit;
+    height: inherit;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -115,8 +115,8 @@
 }
 
 #acoustic a {
-    height: 400px;
-    width: 400px;
+    width: inherit;
+    height: inherit;
 }
 
 #acoustic-cell > .card-text {
@@ -147,11 +147,275 @@
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-top: 2.5em;
 }
 
 .catalog-btn a {
     height: 50px;
     width: 330px;
+}
+
+/* Product Index */
+
+.productTitle {
+    text-align: left;
+    margin-left: 1%;
+    margin-bottom: 0;
+    color: navajowhite;
+    font-size: 48px;
+    padding-bottom: 1%;
+}
+
+.form-actions{
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.form-actions > p {
+   font-size: 24px;
+   color: white;
+}
+
+.form-actions > p > a  {
+    font-size: 20px;
+    font-style: italic;
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0em .5em;
+}
+
+#searchBar {
+    width: 800px;
+    padding: 5px 5px;
+    font-size: 16px;
+    border-radius: 10px 10px;
+}
+
+#searchBtn {
+    color: #fff;
+    background-color: #2f6ff5;
+    border-color: #007bff;
+    margin: 0em .5em;
+    margin-top: 5px;
+    width: 100px;
+    height: 35px;
+}
+
+#assetsTable{
+    background-color: white
+}
+
+#assetsTable thead{
+    color:black;
+    background-color: beige;
+    font-size: 16px;
+    text-align: center;
+}
+
+#assetsTable > table > thead .name{
+    text-align: left;
+}
+
+
+#assetsTable > table > thead .num {
+    text-align: left;
+}
+
+#assetsTable a > img{
+    width: 150px;
+    height: 150px;
+    float: right;
+    margin-right: 15%;
+}
+
+#assetsTable #productIndexTable #typeImg{
+    width: 150px;
+    height: 150px;
+    float: right;
+    margin: 1% 1%;
+}
+
+#assetsTable td {
+    font-size: 14px;
+    border-left: 1.25px solid #dee2e6; 
+}
+
+#assetsTable > table > tbody > .assetRow .assetRate{
+    text-align: right !important;
+}
+
+#assetsTable > table > tbody > .assetRow .assetAvail{
+    text-align: right !important;
+    padding-right: 1.25em;
+}
+
+#assetsTable > table > tbody > .assetRow .assetStrings {
+    text-align: center;
+    padding: 5px;
+}
+
+#assetsTable > table > tbody .assetDesc{
+  width: 55%;
+}
+
+/* Product Detail*/
+
+.productDetailTitle {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    text-align: left;
+    margin-left: 1%;
+    margin-right 1%;
+    margin-bottom: 0;
+    color: navajowhite;
+    font-size: 40px;
+    padding-bottom: 2%;
+}
+
+.content {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -90%); 
+    background-color: white;
+    margin: 0px 0px;
+    padding: 1% 1%;
+    border-radius: 10px 10px;
+    width: 65%;
+}
+
+.content > .imageDiv{
+    height: 40%;
+    width: 40%;
+}
+
+.content > div > img {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    height: 90%;
+    width: 90%;
+}
+
+.content > .imageDiv > .altImages{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: .5fr .5fr 1fr;
+    grid-gap: 1vw;
+    padding-left: 10%;
+}
+.content > .imageDiv > .altImages > img{
+    height: 100px;
+    width: 100px;
+    border: 2px solid grey;
+}
+
+.content > .imageDiv > .altImages > #altImg1 {
+    border: 2px solid orange;
+}
+
+.content > .detailSpecs {
+    margin: 1% 0%;
+    padding: 15px;
+}
+
+.content > div > p > .btns{
+    height: 40px;
+    width: 100px;
+    padding: 10px 10px;
+    font-size: 14px;
+    margin-left: -2.5px;
+}
+
+.content > .detailSpecs .dataTables{
+   margin-top: 3.25%;
+   margin-bottom: 0%;
+}
+.content #rentHistoryTable thead{
+    background-color: rgba(0, 255, 144, 0.5);
+
+}
+
+.content #currHoldsTable thead {
+    background-color: rgba(0, 255, 144, 0.5);
+}
+
+/* Rent Out Detail */
+
+.contentBox {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    table-layout: fixed;
+    background-color: white;
+    margin: 0px 0px;
+    padding: 1% 1%;
+    border-radius: 10px 10px;
+    width: 50%;
+}
+
+.contentBox #itemTitle{
+    font-size: 18px;
+    font-style: oblique;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contentBox .col-md-6{
+    padding-left: 0px;
+}
+
+.contentBox .col-md-6 div #mainImage {
+    height: 85%;
+    width: 85%;
+    float: left;
+    border: 2px solid black;
+    padding-left: 0px;
+}
+
+.contentBox .subBox .formField{
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.contentBox .subBox .formField input{
+    font-size: 14px;
+    border: 1px solid grey;
+}
+
+.contentBox .subBox .formBtnRent{
+   margin-left: 72%;
+}
+
+.contentBox .subBox .formBtnReturn {
+    margin-left: 76%;
+}
+
+.contentBox .subBox .formBtnHold {
+    margin-left: 66%;
+}
+
+.contentBox > .subBox > .altImages {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1vw;
+    padding-top: 15%;
+    padding-left: 10%;
+}
+
+.contentBox > .subBox > .altImages > img {
+    height: 80px;
+    width: 80px;
+    border: 2px solid grey;
+}
+
+.contentBox > .subBox > .altImages > #altImg1 {
+    border: 2px solid orange;
 }
 
 /* Distribution Index */
@@ -213,6 +477,7 @@
 }
 
 /* Distribution Detail */
+
 .jumbotron {
     position: fixed;
     top: 50%;
@@ -402,4 +667,64 @@
 .holds h4{
     font-size: 20px;
     font-weight: 400;
+}
+
+/* Inventory Index */
+#invLedger {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    table-layout: fixed;
+    width: 75%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    /* Font Family */
+}
+
+#invLedger thead {
+    background-color: rgba(0, 255, 144, 0.5);
+}
+
+#invLedger tr {
+    background-color: rgba(0, 255, 144, .15);
+}
+
+#invLedger tr:hover {
+    background-color: rgba(0,0,0,0);
+}
+
+#invLedger th a {
+    color: rgb(0, 146, 82);
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 5%;
+}
+
+#invLedger th {
+    /*color: rgba(128, 128, 128, 0.80); */
+    color: rgba(0, 146, 82, .75);
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 5%;
+}
+
+#invLedger td {
+    color: #000000;
+    font-size: 12px;
+    text-align: center;
+}
+
+#invLedger td a {
+    color: #000000;
+    font-size: 12.5px;
+    font-weight: bold;
+}
+
+/* Error Handling*/
+.page-content .page-start{
+    margin-top: 1%;
+}
+
+.page-content .page-start .errorBtn{
 }
