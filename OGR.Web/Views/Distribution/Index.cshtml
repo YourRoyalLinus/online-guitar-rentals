@@ -1,9 +1,9 @@
 ﻿@model OnlineGuitarRentals.Models.Distribution.DistributionIndexModel
 @{ 
-    ViewBag.Title = "Distribution Center Index";
+    ViewData["Title"] = "Distribution Center Index";
 }
 
-<h2 class="indexTitle">@ViewBag.Title</h2>
+<h2 class="indexTitle">@ViewData["Title"]</h2>
 <div id="distributionIndex">
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id ="distributionTable">
         <thead>

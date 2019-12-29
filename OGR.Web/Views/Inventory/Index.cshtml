@@ -1,9 +1,9 @@
 ﻿@model OnlineGuitarRentals.Models.Inventory.InventoryIndexModel
 @{
-    ViewBag.Title = "Inventory Ledger";
+    ViewData["Title"] = "Inventory Ledger";
 }
 
-<h3>@ViewBag.Title</h3>
+<h3 class="indexTitle">@ViewData["Title"]</h3>
 <div id="invIndex">
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp customTable" id="invLedger">
         <thead>
@@ -21,7 +21,7 @@
             @foreach (var inv in Model.Inventory)
             {
             <tr>
-                <td class="strongTd"><a asp-controller="Product" asp-action="Detail" asp-route-id="@inv.Id">@inv.Id</a></td>
+                <td class="strongTd" ><a asp-controller="Product" asp-action="Detail" asp-route-id="@inv.Id">@inv.Id</a></td>
                 <td>@inv.AssetBrand</td>
                 <td>@inv.AssetName</td>
                 <td>@inv.AssetType</td>
