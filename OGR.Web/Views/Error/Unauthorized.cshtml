@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="page-start">
+        <div class="alert alert-danger">
+            <h2 class="errorType">@ViewData["ErrorCode"]</h2>
+            <h4 class="errorHeader">Uh Oh!</h4>
+            <h6 class="errorText">@ViewData["ErrorMsg"]</h6>
+            <a class="errorBtn btn btn-success btn-sm" asp-controller="Home" asp-action="Index" button type="button">Login</a>
+            <a class="errorBtn btn btn-info btn-sm" href="javascript:history.go(-1)" button type="button">Previous Page</a>
+            <a class="errorBtn btn btn-outline-info btn-sm" asp-controller="Home" asp-action="Index" button type="button">Home</a>
+        </div>
+    </div>
+</body>
+</html>
