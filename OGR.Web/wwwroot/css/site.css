@@ -16,6 +16,7 @@
     font-size:72px;
     color:navajowhite;
 }
+
 .mdl-grid{
     padding:2% 20%;
     
@@ -146,13 +147,74 @@
     position: fixed;
     top: 80%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -80%);
     margin-top: 2.5em;
 }
 
 .catalog-btn a {
     height: 50px;
-    width: 330px;
+    width: 325px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .page-title {
+        font-size: 48px;
+    }
+
+    .demo-card-square.mdl-card {
+        width: 225px;
+        height: 225px;
+    }
+
+
+    #electric-cell > .card-text {
+        height: 25px;
+        width: 250px;
+        padding: 2.5%;
+        font: 24px arial;
+    }
+
+
+    #electric-cell {
+        margin-top: -112.5px;
+        margin-left: -112.5px;
+    }
+
+    #bass-cell {
+        margin-top: -112.5px;
+        margin-left: -112.5px;
+    }
+
+    #bass-cell > .card-text {
+        height: 25px;
+        width: 250px;
+        padding: 2.5%;
+        font: 24px arial;
+    }
+
+    #acoustic-cell > .card-text {
+        height: 25px;
+        width: 250px;
+        padding: 2.5%;
+        font: 24px arial;
+    }
+
+    #acoustic-cell {
+        margin-top: -112.5px;
+        margin-left: -112.5px;
+    }
+
+    .catalog-btn {
+        position: fixed;
+        top: 85%;
+        left: 52%;
+        transform: translate(-52%, -85%);
+    }
+
+    .catalog-btn a {
+        height: 40px;
+        width: 250px;
+    }
 }
 
 /* Product Index */
@@ -213,7 +275,7 @@
 }
 
 #assetsTable > table > thead .name{
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -256,6 +318,50 @@
 
 #assetsTable > table > tbody .assetDesc{
   width: 55%;
+}
+
+@media only screen and (max-width: 1400px) {
+    .productTitle {
+        font-size: 32px;
+    }
+
+    .form-actions > p {
+       font-size: 18px;
+       color: white;
+    }
+
+    .form-actions > p > a  {
+        font-size: 14px;
+    }
+
+    #searchBar {
+        width: 600px;
+        font-size: 14px;
+    }
+
+    #searchBtn {
+        width: 80px;
+        height: 35px;
+    }
+
+    #assetsTable thead{
+        font-size: 14px;
+    }
+
+    #assetsTable a > img{
+        width: 125px;
+        height: 125px;
+        margin-right: 5%;
+    }
+
+    #assetsTable #productIndexTable #typeImg{
+        width: 100px;
+        height: 100px;
+    }
+
+    #assetsTable td {
+        font-size: 12px;
+    }
 }
 
 /* Product Detail*/
@@ -341,8 +447,62 @@
     background-color: rgba(0, 255, 144, 0.5);
 }
 
-/* Rent Out Detail */
+@media only screen and (max-width: 1400px) {
+    .productDetailTitle {
+        margin: 2% 1% 1% 0%;
+        font-size: 24px;
+        padding-bottom: 2%;
+    }
 
+    .content {
+        position: fixed;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -75%);
+        width: 65%;
+        height: 70%;
+    }
+
+    .content > div > img {
+        margin-top: 5%;
+        margin-bottom: 15%;
+        height: 125%;
+        width: 90%;
+    }
+
+    .content > .imageDiv > .altImages {
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: .5fr .5fr 1fr;
+    }
+
+    .content > .imageDiv > .altImages > img {
+        height: 50px;
+        width: 50px;
+    }
+
+    .content > .detailSpecs {
+        margin: 1% 0%;
+        padding: 0px;
+    }
+
+    .content > .detailSpecs > p {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .content > div > p > .btns {
+        height: 30px;
+        width: 60px;
+        padding: 8px 8px;
+        font-size: 10px;
+    }
+
+    .content > .detailSpecs .dataTables {
+        display: none;
+    }
+}
+
+/* Rent/Return/Hold Out Detail */
 .contentBox {
     position: fixed;
     top: 30%;
@@ -418,6 +578,91 @@
     border: 2px solid orange;
 }
 
+@media only screen and (max-width: 1400px) {
+    .contentBox {
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        width: 50%;
+        height: 50%;
+    }
+
+    .contentBox #itemTitle{
+        font-size: 12px;
+    }
+
+    .contentBox .col-md-6 div #mainImage {
+        height: 90%;
+        width: 90%; 
+        margin-top: 3%
+    }
+
+     .contentBox .subBox{
+         margin: .5%;
+         width: 45%;
+         height: 45%;
+     }
+
+    .contentBox .subBox .formField {
+        font-size: 10px;
+        margin-bottom: 3%;
+    }
+
+    .contentBox .subBox .formField input{
+        font-size: 10px;
+    }
+
+    .contentBox .subBox .formBtnRent{
+       margin-left: 73%;
+       margin-bottom: 10%;
+    }
+
+    .contentBox .subBox .formBtnRent > button{
+       height: 25px;
+       width: 75px;
+       font-size: 10px;
+       padding: 5px;
+    }
+
+    .contentBox .subBox .formBtnReturn {
+        margin-left: 73%;
+        margin-bottom: 10%;
+    }
+
+    .contentBox .subBox .formBtnReturn > button{
+       height: 25px;
+       width: 75px;
+       font-size: 10px;
+       padding: 5px;
+    }
+
+    .contentBox .subBox .formBtnHold {
+        margin-left: 73%;
+        margin-bottom: 10%;
+    }
+
+    .contentBox .subBox .formBtnHold > button{
+       height: 25px;
+       width: 75px;
+       font-size: 10px;
+       padding: 5px;
+    }
+
+    .contentBox > .subBox > .altImages {
+        grid-template-rows: .5fr .5fr;
+        grid-template-columns: .5fr .5fr .5fr;
+        grid-gap: .5vw;
+        padding-top: 5%;
+        padding-left: 0%;
+    }   
+
+    .contentBox > .subBox > .altImages > img {
+        height: 65px;
+        width: 65px;
+    }
+}
+
 /* Distribution Index */
 
 .indexTitle {
@@ -476,8 +721,37 @@
     font-weight: bold;
 }
 
-/* Distribution Detail */
+@media only screen and (max-width: 1400px){
+    .indexTitle {
+        position: fixed;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -15%);
+        font-size: 36px;
+    }
 
+    #distributionTable {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%;
+    }
+
+    #distributionTable th a{
+        font-size: 12px;
+    }
+
+    #distributionTable td{
+        font-size: 10px;
+    }
+
+    #distributionTable td a {
+        font-size: 10.5px;
+    }
+}
+
+/* Distribution Detail */
 .jumbotron {
     position: fixed;
     top: 50%;
@@ -570,6 +844,75 @@
     margin-left: 1%;
 }
 
+@media only screen and (max-width: 1400px){
+    .jumbotron {
+        position: fixed;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -60%);
+        margin-top: 1%;
+    }
+
+    .jumboheader {
+        height: 40%;
+        width: 100%;
+    }
+
+    #centerName {
+        font-size: 24px;        
+    }
+
+    .centerContact {
+        margin-top: -2.5%;
+        font-size: 12px;
+    }
+
+    #centerLoc {
+        margin-top: -2%;
+        font-size: 10.5px;
+
+    }
+
+    .jumbobody {
+        height: 65%;
+        width: 100%;
+        margin: 1em 0em .75em .75em;
+    }
+
+    #centerStats {
+        text-align: left;
+        font-size: 10px;
+    }
+
+    #centerCouriers {
+        font-size: 10px;
+        margin-top: -5px;
+    }
+
+    #centerHours {
+        margin: 0em 0em .5em 1em;
+    }
+
+    #centerHours ul{
+        padding-left: 1%;
+    }
+    #centerHours li {
+        font-size: 8.25px;
+        display: inline-block;
+        margin: .10em 0em 0em 0em;
+    }
+
+    #centerImage {
+        position: absolute;
+        left: 49.5%;
+        top: 42%;
+        float: right;
+        height: 55%;
+        width: 48%;
+        margin-left: 1%;
+    }
+}
+
 /* Subscriber Index*/
 #subscriberIndexTable {
     position: fixed;
@@ -624,6 +967,31 @@
     font-weight: bold;
 }
 
+@media only screen and (max-width: 1400px){
+    #subscriberIndexTable {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;    
+    }
+
+    #subscriberIndexTable th a {
+        font-size: 12px;
+    }
+
+    #subscriberIndexTable th {
+        font-size: 11px;
+    }
+    #subscriberIndexTable td {
+        font-size: 9.5px;
+    }
+
+    #subscriberIndexTable td a {
+        font-size: 10px;
+    }
+}
+
 /* Subscriber Detail */
 #subscriberName {
     margin-left: 5%;
@@ -669,6 +1037,45 @@
     font-weight: 400;
 }
 
+@media only screen and (max-width: 1400px){
+    #subscriberName {
+        font-size: 24px;
+        margin-bottom: .5%;
+        margin-top: 9%;
+    }
+
+    .subscriberContact {
+        background-color: rgba(0, 255, 144, .50);
+        border: dashed 2px #000000;
+        margin: 5% 2px 0px 5%;
+        padding: 3%;
+        font-size: 8.75px
+    }
+
+    .subscriberContact > div {
+        padding-bottom: 1em;
+    }
+
+    .rented h4 {
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 5%;
+    }
+
+    .rented div{
+        font-size: 12px;
+    }
+
+    .holds h4 {
+        font-size: 12px;
+        font-weight: bold;
+        margin-top: 5%;
+    }
+
+    .holds div {
+        font-size: 12px;
+    }
+}
 /* Inventory Index */
 #invLedger {
     position: fixed;
@@ -719,6 +1126,46 @@
     color: #000000;
     font-size: 12.5px;
     font-weight: bold;
+}
+
+@media only screen and (max-width: 1400px){
+    #invLedger {
+        position: fixed;
+        top: 85%;
+        left: 50%;
+        transform: translate(-50%, -85%);
+    }
+
+    #invLedger th a {
+        color: rgb(0, 146, 82);
+        font-size: 12px;
+        font-weight: bold;
+        padding-right: 5%;
+    }
+
+    #invLedger td {
+        font-size: 8.5px;
+    }
+
+    #invLedger .name{
+        text-align: center;
+    }
+
+    #invLedger .nameLong {
+        text-align: left;
+        padding-left: 12.5px;
+    }
+
+    #invLedger .num{
+        text-align: right;
+
+    }
+
+    #invLedger .num2d {
+        text-align: center;
+        padding-left: 45px;
+    }
+
 }
 
 /* Error Handling*/
