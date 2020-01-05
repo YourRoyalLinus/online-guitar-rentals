@@ -41,7 +41,7 @@ namespace OnlineGuitarRentals.Controllers
 
             if(!string.IsNullOrEmpty(search))
             {
-                listingResult = listingResult.Where(r => r.Name.Contains(search) || r.Brand.Contains(search));
+                listingResult = listingResult.Where(r => r.Name.ToLower().Contains(search.ToLower()) || r.Brand.ToLower().Contains(search.ToLower()));
             }
 
             var model = new AssetIndexModel()
@@ -77,7 +77,7 @@ namespace OnlineGuitarRentals.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                listingResult = listingResult.Where(r => r.Name.Contains(search) || r.Brand.Contains(search) || r.Style.Contains(search) || r.NumberOfStrings.ToString().Contains(search));
+                listingResult = listingResult.Where(r => r.Name.ToLower().Contains(search.ToLower()) || r.Brand.ToLower().Contains(search.ToLower()) || r.Style.ToLower().Contains(search.ToLower()) || r.NumberOfStrings.ToString().Contains(search));
             }
 
             var model = new GuitarIndexModel()
