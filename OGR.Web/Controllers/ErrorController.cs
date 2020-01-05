@@ -44,7 +44,7 @@ namespace OnlineGuitarRentals.Controllers
                 default:
                     ViewData["Title"] = "Unknown Error";
                     ViewData["ErrorCode"] = $"Status Code - {statusCode}";
-                    ViewData["ErrorMsg"] = "An unexpected error has occured and the IT team has been notified. We apologize for the inconvinience.";
+                    ViewData["ErrorMsg"] = "An unexpected error has occured and the IT team has been notified. We apologise for the inconvinience.";
                     return View("Error");
             }            
         }
