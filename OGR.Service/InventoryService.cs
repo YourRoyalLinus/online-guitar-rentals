@@ -44,7 +44,7 @@ namespace RentalServices
 
             return _context.Inventory
                 .Include(i => i.RentalAsset)
-                .Where(i => guitars.Contains(i.RentalAsset)); 
+                .Where(i => guitars.Where(g => g.Id == i.RentalAsset.Id).Any()); 
 
             
         }
@@ -58,6 +58,7 @@ namespace RentalServices
 
         public string GetAssetName(int id)
         {
+            
             return _context.RentalAssets
                 .FirstOrDefault(a => a.Id == id)
                 .Name;
@@ -96,7 +97,15 @@ namespace RentalServices
 
         }
 
-        public IEnumerable<Inventory> GetByPrice(int price, int start, int end)
+        public IEnumerable<Inventory> GetByPrice(double price)
+        {
+            return _context.Inventory
+                .Include(i => i.RentalAsset)
+                .Include(i => i.DistributionCenter)
+                .Where(i => i.Price == price);
+        }
+
+        public IEnumerable<Inventory> GetByPrice(double start, double end)
         {
             return _context.Inventory
                 .Include(i => i.RentalAsset)
@@ -104,7 +113,15 @@ namespace RentalServices
                 .Where(i => i.Price >= start && i.Price <= end);
         }
 
-        public IEnumerable<Inventory> GetByStock(int stock, int start, int end)
+        public IEnumerable<Inventory> GetByStock(int stock)
+        {
+            return _context.Inventory
+                .Include(i => i.RentalAsset)
+                .Include(i => i.DistributionCenter)
+                .Where(i => i.Stock == stock);
+        }
+
+        public IEnumerable<Inventory> GetByStock(int start, int end)
         {
             return _context.Inventory
                 .Include(i => i.RentalAsset)
