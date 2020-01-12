@@ -7,7 +7,7 @@ namespace RentalData
     {
         Subscriber Get(int id);
         IEnumerable<Subscriber> GetAll();
-        void Add(Subscriber newSubscriber); //Check
+        void Add(Subscriber newSubscriber);
         IEnumerable<RentalHistory> GetRentalHistories(int subscriberId);
         IEnumerable<Hold> GetHolds(int subscriberId);
         IEnumerable<Rental> GetRentals(int subscriberId);

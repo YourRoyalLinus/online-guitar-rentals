@@ -25,7 +25,5 @@ namespace RentalData
         string GetCurrentHoldSubscriberName(int id);
         DateTime GetCurrentHoldPlaced(int id); 
         IEnumerable<Hold> GetCurrentHolds(int id);
-
-
     }
 }

@@ -14,24 +14,13 @@ namespace RentalData
         IEnumerable<Courier> GetCouriers(int centerId);
         DistributionCenter Get(int centerId);
         void Add(DistributionCenter newCenter);
-
         string GetDeliveryStates(int centerId);
-
         string GetDeliveryRegion(int centerId);
         string GetCourierNames(int centerId);
         bool IsDelivering(int centerId);
         double GetTotalAssetValue(int centerId);
-
         int GetTotalStock(int centerId);
-
         double GetAssetPrice(int centerId, int assetId);
-
         int GetAssetStock(int centerId, int assetId);
-
-
-
-
-
-
     }
 }
