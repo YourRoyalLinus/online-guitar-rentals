@@ -82,7 +82,7 @@ namespace RentalServices
         {
             return _context.Couriers
                 .Include(c => c.DistributionCenter)
-                .Where(c => c.DistributionCenter.Id == centerId); //Get Courier Names?
+                .Where(c => c.DistributionCenter.Id == centerId);
         }
 
         public IEnumerable<string> GetDeliveryHours(int centerId)
@@ -132,10 +132,17 @@ namespace RentalServices
 
         public double GetTotalAssetValue(int centerId)
         {
-            return _context.Inventory
+           var totalAssetsPrice = _context.Inventory
                 .Include(i => i.DistributionCenter)
                 .Where(i => i.DistributionCenter.Id == centerId)
                 .Sum(i => i.Price);
+
+            var totalAssetStock = _context.Inventory
+                .Include(i => i.DistributionCenter)
+                .Where(i => i.DistributionCenter.Id == centerId)
+                .Sum(i => i.Stock);
+
+            return totalAssetsPrice * totalAssetStock;
         }
 
         public int GetTotalStock(int centerId)
@@ -149,13 +156,13 @@ namespace RentalServices
         public bool IsDelivering(int centerId)
         {
             var currentTime = DateTime.Now.Hour;
-            var currentDay = (int) DateTime.Now.Day;
+            var currentDay = (int) DateTime.Now.DayOfWeek;
             var times = _context.Couriers.Where(h => h.DistributionCenter.Id == centerId);
             var daysHours = times.FirstOrDefault(h => h.DayOfWeek == currentDay);
             if (daysHours == null)
                 return false;
             else
-                return currentTime > daysHours.DeliveryStartTime.Hour && currentTime < daysHours.DeliveryEndTime.Hour;
+                return currentTime >= daysHours.DeliveryStartTime.Hour && currentTime < daysHours.DeliveryEndTime.Hour;
         }
     }
 }
