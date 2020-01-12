@@ -9,9 +9,13 @@ namespace RentalData
 
         IEnumerable<Inventory> GetAllType(string type);
 
-        IEnumerable<Inventory> GetByPrice(int price, int start, int end);
+        IEnumerable<Inventory> GetByPrice(double price);
 
-        IEnumerable<Inventory> GetByStock(int stock, int start, int end);
+        IEnumerable<Inventory> GetByPrice(double start, double end);
+
+        IEnumerable<Inventory> GetByStock(int stock);
+
+        IEnumerable<Inventory> GetByStock(int start, int end);
 
         Inventory GetByAssetId(int id);
 
