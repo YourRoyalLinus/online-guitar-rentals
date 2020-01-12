@@ -83,7 +83,7 @@ namespace OnlineGuitarRentals.Controllers
 
         public IActionResult Detail(int id)
         {
-            var center = _distribution.Get(id); //Not getting a
+            var center = _distribution.Get(id); 
 
             var model = new DistributionDetailModel
             {
