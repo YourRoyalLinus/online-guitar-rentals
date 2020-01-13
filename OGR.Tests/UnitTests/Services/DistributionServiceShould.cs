@@ -405,8 +405,8 @@ namespace UnitTests.Services
                 {
                     Id = 5,
                     DayOfWeek = 0,
-                    DeliveryStartTime = dt,
-                    DeliveryEndTime = dt.AddHours(5),
+                    DeliveryStartTime = dt.AddHours(-1),
+                    DeliveryEndTime = dt.AddHours(1),
                     DistributionCenter = GetDistributionCenters().FirstOrDefault(c => c.Id == 1),
                     Name = "FedEx"
 
