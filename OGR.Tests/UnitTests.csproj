@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\OGR.Data\RentalData.csproj" />
-    <ProjectReference Include="..\..\OGR.Web\OnlineGuitarRentals.csproj" />
+    <ProjectReference Include="..\OGR.Data\RentalData.csproj" />
+    <ProjectReference Include="..\OGR.Web\OnlineGuitarRentals.csproj" />
   </ItemGroup>
 
 </Project>
