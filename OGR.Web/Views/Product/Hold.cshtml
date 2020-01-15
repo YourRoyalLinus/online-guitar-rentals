@@ -9,61 +9,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-                $(".contentBox .subBox div.altImages #altImg1").click(function () {
-                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.ImageUrl")
-                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
-                $(".contentBox .subBox div.altImages #altImg1").css("border", "solid 2px orange")
-            });
-        });
+    <script type='text/javascript'>
+        localStorage.setItem('imageUrl', '@Model.ImageUrl');
+        localStorage.setItem('altImageUrl1', '@Model.AltImageUrl1');
+        localStorage.setItem('altImageUrl2', '@Model.AltImageUrl2');
+        localStorage.setItem('altImageUrl3', '@Model.AltImageUrl3');
+        localStorage.setItem('altImageUrl4', '@Model.AltImageUrl4');
+        localStorage.setItem('altImageUrl5', '@Model.AltImageUrl5');
     </script>
-    <script>
-        $(document).ready(function () {
-                $(".contentBox .subBox div.altImages #altImg2").click(function () {
-                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl1")
-                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
-                $(".contentBox .subBox div.altImages #altImg2").css("border", "solid 2px orange")
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-                $(".contentBox .subBox div.altImages #altImg3").click(function () {
-                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl2")
-                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
-                $(".contentBox .subBox div.altImages #altImg3").css("border", "solid 2px orange")
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-                $(".contentBox .subBox div.altImages #altImg4").click(function () {
-                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl3")
-                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
-                $(".contentBox .subBox div.altImages #altImg4").css("border", "solid 2px orange")
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-                $(".contentBox .subBox div.altImages #altImg5").click(function () {
-                $(".contentBox .col-md-6 div #mainImage").attr("src", "@Model.AltImageUrl4")
-                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
-                $(".contentBox .subBox div.altImages #altImg5").css("border", "solid 2px orange")
-            });
-        });
-    </script>
-    <script>
-                $(document).ready(function () {
-                $(".contentBox .subBox div.altImages #altImg6").click(function () {
-                $(".contentBox .col-md-6 div #mainImage ").attr("src", "@Model.AltImageUrl5")
-                $(".contentBox .subBox div.altImages img").css("border", "2px solid grey")
-                $(".contentBox .subBox div.altImages #altImg6").css("border", "solid 2px orange")
-            });
-        });
-    </script>
-
+    <script type="text/javascript" src="~/js/change-image.js"></script>
 }
 
 @section Styles{
