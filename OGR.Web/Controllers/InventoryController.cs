@@ -33,7 +33,7 @@ namespace OnlineGuitarRentals.Controllers
                 AssetType = _inventory.GetAssetType(inv.Id), 
                 AssetStyle = _inventory.GetAssetStyle(inv.Id),
                 TotalStock = inv.Stock,
-                TotalAssetValue = inv.Price,
+                TotalAssetValue = inv.Price * inv.Stock,
             });
 
 
